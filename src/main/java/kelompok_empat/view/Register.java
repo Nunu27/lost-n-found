@@ -4,11 +4,13 @@
  */
 package kelompok_empat.view;
 
+import kelompok_empat.controller.RootController;
+
 /**
  *
  * @author wisnu
  */
-public class Register extends Navigator {
+public class Register extends RootController {
 
     /**
      * Creates new form Login
@@ -53,6 +55,12 @@ public class Register extends Navigator {
         lblPassword.setText("Password");
 
         btnRegister.setText("Register");
+        btnRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
 
         txtFooter.setText("Sudah punya akun?");
         pnlFooter.add(txtFooter);
@@ -130,6 +138,11 @@ public class Register extends Navigator {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         bukaFrame("login");
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+       getUserController().addUser(tfNama.getText(), tfEmail.getText(), tfWa.getText(), new String(tfPassword.getPassword()));
+       bukaFrame("beranda");
+    }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**
      * @param args the command line arguments

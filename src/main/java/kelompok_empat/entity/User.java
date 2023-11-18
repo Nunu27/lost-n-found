@@ -4,11 +4,17 @@
  */
 package kelompok_empat.entity;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 /**
  *
  * @author wisnu
  */
 public class User {
+
     private String nama;
     private String email;
     private String password;
@@ -18,7 +24,7 @@ public class User {
         this.nama = nama;
         this.email = email;
         this.password = password;
-        this.noWa = noWa;
+        this.noWa = noWa.startsWith("0") ? "62" + noWa.substring(1) : noWa;
     }
 
     public String getEmail() {
@@ -51,5 +57,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean bukaKontak() {
+        Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+
+        if (desktop == null || !desktop.isSupported(Desktop.Action.BROWSE)) {
+            return false;
+        }
+        
+        try {
+            desktop.browse(new URI("https://wa.me/" + noWa));
+            return true;
+            
+        } catch (IOException | URISyntaxException e) {
+            return false;
+        }
     }
 }

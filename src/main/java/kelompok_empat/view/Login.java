@@ -4,11 +4,15 @@
  */
 package kelompok_empat.view;
 
+import javax.swing.JOptionPane;
+import kelompok_empat.controller.RootController;
+import kelompok_empat.entity.User;
+
 /**
  *
  * @author wisnu
  */
-public class Login extends Navigator {
+public class Login extends RootController {
 
     /**
      * Creates new form Login
@@ -49,6 +53,12 @@ public class Login extends Navigator {
         lblPassword.setText("Password");
 
         btnLogin.setText("Login");
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         txtFooter.setText("Belum punya akun?");
         pnlFooter.add(txtFooter);
@@ -110,6 +120,16 @@ public class Login extends Navigator {
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         bukaFrame("register");
     }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        User user = getUserController().login(tfEmail.getText(), new String(tfPassword.getPassword()));
+        
+        if(user == null) {
+            JOptionPane.showMessageDialog(this, "Email atau password salah!", "Login gagal", JOptionPane.WARNING_MESSAGE);
+        } else {
+            bukaFrame("beranda");
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
