@@ -10,32 +10,35 @@ import java.time.LocalDate;
  *
  * @author Jhiven Agnar
  */
-public class Barang {
+public class Post {
     private String judul;
     private String namaBarang;
-    private String pathFotoBarang;
-    private String deskripsiBarang;
+    private String pathFoto;
+    private String deskripsi;
     private String alamat;
+    private String kategori;
     private boolean telahDitemukan;
-    private LocalDate tanggalPosting;
+    private LocalDate tanggalPost;
     private User dipostingOleh;
     
-    public Barang(User dipostingOleh, String namaBarang, String alamat){
+    public Post(User dipostingOleh, String namaBarang, String alamat, String judul, String kategori){
+        this.judul = judul;
         this.namaBarang = namaBarang;
-        this.pathFotoBarang = "";
-        this.deskripsiBarang = "";
+        this.pathFoto = "";
+        this.deskripsi = "";
         this.alamat = alamat;
+        this.kategori = kategori;
         this.telahDitemukan = false;
-        this.tanggalPosting = LocalDate.now();
+        this.tanggalPost = LocalDate.now();
         this.dipostingOleh = dipostingOleh;
     }
 
-    public void setPathFotoBarang(String pathFotoBarang) {
-        this.pathFotoBarang = pathFotoBarang;
+    public void setPathFoto(String pathFoto) {
+        this.pathFoto = pathFoto;
     }
 
-    public void setDeskripsiBarang(String deskripsiBarang) {
-        this.deskripsiBarang = deskripsiBarang;
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
     }
 
     public void setNamaBarang(String namaBarang) {
@@ -53,6 +56,14 @@ public class Barang {
     public void setJudul(String judul) {
         this.judul = judul;
     }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
+    }
+
+    public String getKategori() {
+        return kategori;
+    }
     
     public String getJudul() {
         return judul;
@@ -62,12 +73,12 @@ public class Barang {
         return namaBarang;
     }
 
-    public String getPathFotoBarang() {
-        return pathFotoBarang;
+    public String getPathFoto() {
+        return pathFoto;
     }
 
-    public String getDeskripsiBarang() {
-        return deskripsiBarang;
+    public String getDeskripsi() {
+        return deskripsi;
     }
 
     public String getAlamat() {
@@ -76,10 +87,6 @@ public class Barang {
 
     public boolean getTelahDitemukan() {
         return telahDitemukan;
-    }
-
-    public LocalDate getTanggalPosting() {
-        return tanggalPosting;
     }
 
     public User getDipostingOleh() {
