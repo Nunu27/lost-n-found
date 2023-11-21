@@ -33,6 +33,19 @@ public class PostController {
         return hasilCari;
     }
     
+    public ArrayList<Post> cariPost(User user){
+        
+        ArrayList<Post> hasilCari = new ArrayList<>();
+        
+        for(Post post : listPost){
+            if(post.getDipostingOleh() == user){
+                hasilCari.add(post);
+            }
+        }
+        
+        return hasilCari;
+    }
+    
     public void hapusPost(Post post){
         this.listPost.remove(post);
     }
