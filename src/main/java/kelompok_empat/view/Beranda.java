@@ -28,53 +28,208 @@ public class Beranda extends RootController {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jButton1 = new javax.swing.JButton();
+        tfCariPost = new javax.swing.JTextField();
+        btnCari = new javax.swing.JButton();
+        cbKategori = new javax.swing.JComboBox<>();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jLayeredPane2 = new javax.swing.JLayeredPane();
+        jPanel3 = new javax.swing.JPanel();
+        btnBuatPost = new javax.swing.JButton();
+        postItem = new javax.swing.JPanel();
+        lblFoto = new javax.swing.JLabel();
+        lblJudul = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
+        lblNamaBarang = new javax.swing.JLabel();
+        lblLokasi = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        btnProfile = new javax.swing.JButton();
+        btnBeranda = new javax.swing.JButton();
+        btnMyPost = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Beranda - LostNFound");
         setMinimumSize(new java.awt.Dimension(500, 0));
 
-        jTextField1.setToolTipText("Cari post");
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jTextField1.setOpaque(true);
+        tfCariPost.setToolTipText("Cari post");
+        tfCariPost.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tfCariPost.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        tfCariPost.setOpaque(true);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua", "Lost", "Found" }));
-        jComboBox1.setBorder(null);
+        btnCari.setText("Cari");
 
-        jButton1.setText("Cari");
+        cbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua", "Lost", "Found" }));
+        cbKategori.setBorder(null);
+
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        btnBuatPost.setText("Buat");
+        btnBuatPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuatPostActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnBuatPost);
+
+        postItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        lblFoto.setText("foto");
+
+        lblJudul.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblJudul.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblJudul.setText("Judul");
+
+        lblUser.setText("Posted by john doe");
+
+        lblNamaBarang.setText("Nama Barang");
+
+        lblLokasi.setText("Lokasi");
+
+        javax.swing.GroupLayout postItemLayout = new javax.swing.GroupLayout(postItem);
+        postItem.setLayout(postItemLayout);
+        postItemLayout.setHorizontalGroup(
+            postItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(postItemLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(postItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(postItemLayout.createSequentialGroup()
+                        .addGroup(postItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUser)
+                            .addComponent(lblNamaBarang)
+                            .addComponent(lblLokasi))
+                        .addContainerGap(396, Short.MAX_VALUE))
+                    .addComponent(lblJudul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        postItemLayout.setVerticalGroup(
+            postItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(postItemLayout.createSequentialGroup()
+                .addGroup(postItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(postItemLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(postItemLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblJudul)
+                        .addGap(11, 11, 11)
+                        .addComponent(lblNamaBarang)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblLokasi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addComponent(lblUser)))
+                .addContainerGap())
+        );
+
+        jLayeredPane2.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(postItem, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
+        jLayeredPane2.setLayout(jLayeredPane2Layout);
+        jLayeredPane2Layout.setHorizontalGroup(
+            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(postItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
+            .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
+        );
+        jLayeredPane2Layout.setVerticalGroup(
+            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(postItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
+        );
+
+        jScrollPane2.setViewportView(jLayeredPane2);
+
+        jLayeredPane1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addComponent(jScrollPane2)
+                .addGap(0, 0, 0))
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
+        );
+
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        jPanel2.setLayout(new java.awt.GridLayout(4, 1, 0, 10));
+
+        btnProfile.setText("Profile");
+        jPanel2.add(btnProfile);
+
+        btnBeranda.setText("Beranda");
+        jPanel2.add(btnBeranda);
+
+        btnMyPost.setText("My Post");
+        btnMyPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMyPostActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnMyPost);
+
+        btnLogout.setText("Logout");
+        jPanel2.add(btnLogout);
+
+        jPanel1.add(jPanel2, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap())
-            .addComponent(jScrollPane1)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(tfCariPost)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCari))
+                    .addComponent(jLayeredPane1))
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE))
+                    .addComponent(tfCariPost, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCari)
+                    .addComponent(cbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(jLayeredPane1))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuatPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuatPostActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuatPostActionPerformed
+
+    private void btnMyPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMyPostActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMyPostActionPerformed
 
     /**
      * @param args the command line arguments
@@ -89,9 +244,25 @@ public class Beranda extends RootController {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton btnBeranda;
+    private javax.swing.JButton btnBuatPost;
+    private javax.swing.JButton btnCari;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnMyPost;
+    private javax.swing.JButton btnProfile;
+    private javax.swing.JComboBox<String> cbKategori;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLayeredPane jLayeredPane2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblFoto;
+    private javax.swing.JLabel lblJudul;
+    private javax.swing.JLabel lblLokasi;
+    private javax.swing.JLabel lblNamaBarang;
+    private javax.swing.JLabel lblUser;
+    private javax.swing.JPanel postItem;
+    private javax.swing.JTextField tfCariPost;
     // End of variables declaration//GEN-END:variables
 }
