@@ -64,11 +64,6 @@ public class Profile extends RootController{
         btnEditProfile.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 12)); // NOI18N
         btnEditProfile.setText("Edit profile");
         btnEditProfile.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnEditProfile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditProfileActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 3, 24)); // NOI18N
         jLabel1.setText("Muhammad Rafli Dhziaulhaq");
@@ -134,11 +129,6 @@ public class Profile extends RootController{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnEditProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditProfileActionPerformed
-        bukaFrame("EditProfile");
-        
-    }//GEN-LAST:event_btnEditProfileActionPerformed
 
     /**
      * @param args the command line arguments
