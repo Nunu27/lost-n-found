@@ -15,6 +15,7 @@ public class BerandaNew extends javax.swing.JPanel {
      */
     public BerandaNew() {
         initComponents();
+        
     }
 
     /**

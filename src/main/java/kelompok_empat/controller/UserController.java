@@ -57,4 +57,8 @@ public class UserController {
 
         return null;
     }
+    
+    public void logout(){
+        this.currentUser = null;
+    }
 }

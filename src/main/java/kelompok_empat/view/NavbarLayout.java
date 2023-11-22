@@ -5,6 +5,8 @@
 package kelompok_empat.view;
 
 import java.awt.Color;
+import java.awt.Image;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import kelompok_empat.controller.RootController;
 
@@ -16,15 +18,23 @@ public class NavbarLayout extends RootController {
 
     /**
      * Creates new form NavbarLayout
+     *
      * @param content
      */
     public NavbarLayout(JPanel content) {
         initComponents();
-        
+
         pnlContent.add(content);
-        setBarColor(new Color(179, 99, 0));
+        setBarColor(Color.decode("#FF9717"));
         setTitleColor(Color.white);
-   }
+        ubahWarnaButton(content);
+    }
+    
+    private void ubahWarnaButton(JPanel content){
+        if(content instanceof BerandaNew){
+            btnBeranda.setBackground(Color.decode("#E27D00"));
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,8 +46,11 @@ public class NavbarLayout extends RootController {
     private void initComponents() {
 
         pnlSidebar = new javax.swing.JPanel();
-        lblTitle = new javax.swing.JButton();
-        btnBeranda = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
+        btnBeranda = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
+        btnProfile = new javax.swing.JButton();
+        btnPostinganSaya = new javax.swing.JButton();
         pnlContent = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,34 +58,108 @@ public class NavbarLayout extends RootController {
 
         pnlSidebar.setBackground(new java.awt.Color(255, 151, 22));
 
-        lblTitle.setBackground(new java.awt.Color(255, 151, 22));
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitle.setIcon(new javax.swing.ImageIcon("C:\\Users\\wisnu\\Documents\\NetBeansProjects\\lostnfound\\src\\main\\java\\kelompok_empat\\resources\\home.png")); // NOI18N
-        lblTitle.setText("Beranda");
-        lblTitle.setBorder(null);
-        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("LostNFound");
 
-        btnBeranda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnBeranda.setBackground(new java.awt.Color(255, 151, 22));
+        btnBeranda.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnBeranda.setForeground(new java.awt.Color(255, 255, 255));
-        btnBeranda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnBeranda.setText("LostNFound");
+        btnBeranda.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/kelompok_empat/resources/iconBeranda.png")).getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH)));
+        btnBeranda.setText("Beranda");
+        btnBeranda.setBorder(null);
+        btnBeranda.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnBeranda.setIconTextGap(10);
+        btnBeranda.setInheritsPopupMenu(true);
+        btnBeranda.setMargin(new java.awt.Insets(2, 30, 3, 14));
+        btnBeranda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBerandaActionPerformed(evt);
+            }
+        });
+
+        btnLogout.setBackground(new java.awt.Color(255, 151, 22));
+        btnLogout.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/kelompok_empat/resources/iconLogout.png")).getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH)));
+        btnLogout.setText("Logout");
+        btnLogout.setBorder(null);
+        btnLogout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnLogout.setIconTextGap(10);
+        btnLogout.setInheritsPopupMenu(true);
+        btnLogout.setMargin(new java.awt.Insets(2, 30, 3, 14));
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
+        btnProfile.setBackground(new java.awt.Color(255, 151, 22));
+        btnProfile.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnProfile.setForeground(new java.awt.Color(255, 255, 255));
+        btnProfile.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/kelompok_empat/resources/iconProfile.png")).getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH)));
+        btnProfile.setText("Profile");
+        btnProfile.setBorder(null);
+        btnProfile.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnProfile.setIconTextGap(10);
+        btnProfile.setInheritsPopupMenu(true);
+        btnProfile.setMargin(new java.awt.Insets(2, 30, 3, 14));
+        btnProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProfileActionPerformed(evt);
+            }
+        });
+
+        btnPostinganSaya.setBackground(new java.awt.Color(255, 151, 22));
+        btnPostinganSaya.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnPostinganSaya.setForeground(new java.awt.Color(255, 255, 255));
+        btnPostinganSaya.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/kelompok_empat/resources/iconPost.png")).getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH)));
+        btnPostinganSaya.setText("Postingan Saya");
+        btnPostinganSaya.setBorder(null);
+        btnPostinganSaya.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnPostinganSaya.setIconTextGap(10);
+        btnPostinganSaya.setInheritsPopupMenu(true);
+        btnPostinganSaya.setMargin(new java.awt.Insets(2, 30, 3, 14));
+        btnPostinganSaya.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPostinganSayaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlSidebarLayout = new javax.swing.GroupLayout(pnlSidebar);
         pnlSidebar.setLayout(pnlSidebarLayout);
         pnlSidebarLayout.setHorizontalGroup(
             pnlSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnBeranda, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSidebarLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(pnlSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBeranda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPostinganSaya, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
         pnlSidebarLayout.setVerticalGroup(
             pnlSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSidebarLayout.createSequentialGroup()
-                .addComponent(btnBeranda, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btnBeranda, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnPostinganSaya, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
         );
+
+        btnBeranda.setBorder(BorderFactory.createEmptyBorder(4, 10, 4, 4));
+        btnLogout.setBorder(BorderFactory.createEmptyBorder(4, 10, 4, 4));
+        btnProfile.setBorder(BorderFactory.createEmptyBorder(4, 10, 4, 4));
+        btnPostinganSaya.setBorder(BorderFactory.createEmptyBorder(4, 10, 4, 4));
 
         pnlContent.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -83,7 +170,7 @@ public class NavbarLayout extends RootController {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlSidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(pnlContent, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE))
+                .addComponent(pnlContent, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,9 +181,29 @@ public class NavbarLayout extends RootController {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBerandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBerandaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBerandaActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        getUserController().logout();
+        bukaFrame("login");
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProfileActionPerformed
+
+    private void btnPostinganSayaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostinganSayaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPostinganSayaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnBeranda;
-    private javax.swing.JButton lblTitle;
+    private javax.swing.JButton btnBeranda;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnPostinganSaya;
+    private javax.swing.JButton btnProfile;
+    private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel pnlContent;
     private javax.swing.JPanel pnlSidebar;
     // End of variables declaration//GEN-END:variables
