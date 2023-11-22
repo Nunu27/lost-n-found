@@ -4,10 +4,13 @@
  */
 package kelompok_empat.controller;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import kelompok_empat.view.Beranda;
+import javax.swing.JPanel;
+import kelompok_empat.view.BerandaNew;
 import kelompok_empat.view.Login;
+import kelompok_empat.view.NavbarLayout;
 import kelompok_empat.view.Register;
 
 /**
@@ -16,7 +19,7 @@ import kelompok_empat.view.Register;
  */
 public abstract class RootController extends JFrame {
 
-    private UserController userController = new UserController();
+    private UserController userController;
 
     public void loadController(UserController userController) {
         this.userController = userController;
@@ -34,15 +37,25 @@ public abstract class RootController extends JFrame {
             case "register" -> {
                 return new Register();
             }
-            case "beranda" -> {
-                return new Beranda();
-            }
+
+            // Frame dengan navbar
             default -> {
-                return null;
+                JPanel content = null;
+
+                switch (namaFrame) {
+                    case "beranda" -> {
+                        content = new BerandaNew();
+                        break;
+                    }
+                }
+
+                if (content == null) {
+                    return null;
+                }
+                return new NavbarLayout(content);
             }
         }
     }
-
     public void bukaFrame(String namaFrame) {
         RootController frame = getFrame(namaFrame);
 
@@ -54,5 +67,11 @@ public abstract class RootController extends JFrame {
             dispose();
             frame.setVisible(true);
         }
+    }
+    public void setBarColor(Color color) {
+        getRootPane().putClientProperty("JRootPane.titleBarBackground", color);
+    }
+    public void setTitleColor(Color color) {
+        getRootPane().putClientProperty("JRootPane.titleBarForeground", color);
     }
 }
