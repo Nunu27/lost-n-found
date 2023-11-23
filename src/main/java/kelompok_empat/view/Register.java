@@ -4,9 +4,7 @@
  */
 package kelompok_empat.view;
 
-import javax.swing.JOptionPane;
 import kelompok_empat.controller.RootController;
-import kelompok_empat.entity.User;
 
 /**
  *
@@ -43,8 +41,8 @@ public class Register extends RootController {
         tfWa = new javax.swing.JTextField();
         lblWa = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
+        imageUpload21 = new kelompok_empat.component.ImageUpload("/kelompok_empat/resources/users/", "temp");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Register");
@@ -105,10 +103,6 @@ public class Register extends RootController {
             }
         }.getIcon());
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton1.setText("Pilih Gambar");
-
         btnRegister.setBackground(new java.awt.Color(255, 151, 22));
         btnRegister.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnRegister.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,8 +123,8 @@ public class Register extends RootController {
                         .addGap(141, 141, 141)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addGap(0, 36, Short.MAX_VALUE))
+                        .addComponent(imageUpload21, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 97, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +153,7 @@ public class Register extends RootController {
                         .addComponent(lblTitle)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1))
+                    .addComponent(imageUpload21, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblNama)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -187,18 +181,18 @@ public class Register extends RootController {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        bukaFrame("login");
+        openFrame("login");
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         getUserController().addUser(tfNama.getText(), tfEmail.getText(), tfWa.getText(), new String(tfPassword.getPassword()));
-        bukaFrame("beranda");
+        openFrame("beranda");
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegister;
-    private javax.swing.JButton jButton1;
+    private kelompok_empat.component.ImageUpload imageUpload21;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblNama;

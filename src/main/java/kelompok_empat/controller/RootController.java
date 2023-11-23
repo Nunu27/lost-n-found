@@ -7,9 +7,6 @@ package kelompok_empat.controller;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import kelompok_empat.entity.Post;
-import kelompok_empat.view.BerandaNew;
 import kelompok_empat.view.Login;
 import kelompok_empat.view.NavbarLayout;
 import kelompok_empat.view.Register;
@@ -36,62 +33,33 @@ public abstract class RootController extends JFrame {
         return postController;
     }
 
-    private RootController getFrame(String namaFrame) {
-        switch (namaFrame) {
+    private RootController getFrame(String name) {
+        switch (name) {
             case "login" -> {
                 return new Login();
             }
             case "register" -> {
                 return new Register();
             }
+            case "beranda", "profil", "detail_post" -> {
+                return new NavbarLayout(name);
+            }
 
-            // Frame dengan navbar
             default -> {
-                JPanel content = null;
-
-                switch (namaFrame) {
-                    case "beranda" -> {
-                        content = new BerandaNew(this);
-                        break;
-                    }
-                }
-
-                if (content == null) {
-                    return null;
-                }
-                return new NavbarLayout(content);
+                return null;
             }
         }
     }
 
-    public void bukaFrame(String namaFrame) {
-        RootController frame = getFrame(namaFrame);
+    public void openFrame(String name) {
+        RootController frame = getFrame(name);
 
         if (frame == null) {
             JOptionPane.showMessageDialog(this, "Frame tidak ditemukan!", "Error", JOptionPane.WARNING_MESSAGE);
         } else {
             frame.loadController(userController, postController);
             frame.setLocationRelativeTo(this);
-            dispose();
-            frame.setVisible(true);
-        }
-    }
-
-    public void bukaPost(String namaFrame, Post post) {
-        JPanel content = null;
-        RootController frame = null;
-
-        switch (namaFrame) {
-            case "detail" -> content = null;
-        }
-
-        if (frame == null) {
-            JOptionPane.showMessageDialog(this, "Frame tidak ditemukan!", "Error", JOptionPane.WARNING_MESSAGE);
-        } else {
-            frame = new NavbarLayout(content);
-            
-            frame.loadController(userController, postController);
-            frame.setLocationRelativeTo(this);
+            frame.afterOpen();
             dispose();
             frame.setVisible(true);
         }
@@ -103,5 +71,9 @@ public abstract class RootController extends JFrame {
 
     public void setTitleColor(Color color) {
         getRootPane().putClientProperty("JRootPane.titleBarForeground", color);
+    }
+
+    public void afterOpen() {
+
     }
 }

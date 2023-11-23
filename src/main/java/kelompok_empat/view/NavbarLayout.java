@@ -4,11 +4,11 @@
  */
 package kelompok_empat.view;
 
+import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Image;
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
 import kelompok_empat.controller.RootController;
+import kelompok_empat.component.ImageResizer;
+import kelompok_empat.entity.Post;
 
 /**
  *
@@ -16,24 +16,51 @@ import kelompok_empat.controller.RootController;
  */
 public class NavbarLayout extends RootController {
 
+    private String currentPage = "beranda";
+
     /**
      * Creates new form NavbarLayout
-     *
-     * @param content
      */
-    public NavbarLayout(JPanel content) {
+    public NavbarLayout() {
         initComponents();
 
-        pnlContent.add(content);
+        pnlContent.add(new Beranda(this), "beranda");
+
         setBarColor(Color.decode("#FF9717"));
         setTitleColor(Color.white);
-        ubahWarnaButton(content);
     }
-    
-    private void ubahWarnaButton(JPanel content){
-        if(content instanceof BerandaNew){
-            btnBeranda.setBackground(Color.decode("#E27D00"));
+
+    public NavbarLayout(String page) {
+        this();
+        switchPage(page);
+    }
+
+    @Override
+    public void afterOpen() {
+        if ("beranda".equals(currentPage)) {
+            ((Beranda) pnlContent.getComponent(0)).filterPost();
         }
+    }
+
+    private void switchPage(String page) {
+        CardLayout layout = (CardLayout) pnlContent.getLayout();
+        layout.show(pnlContent, page);
+
+        setButtonColor(currentPage, Color.decode("#FF9717"));
+        setButtonColor(page, Color.decode("#E27D00"));
+
+        currentPage = page;
+    }
+
+    private void setButtonColor(String page, Color color) {
+        switch (page) {
+            case "beranda" ->
+                btnBeranda.setBackground(color);
+        }
+    }
+
+    public void viewPost(Post post) {
+        System.out.println("hai " + post.getJudul());
     }
 
     /**
@@ -66,9 +93,9 @@ public class NavbarLayout extends RootController {
         btnBeranda.setBackground(new java.awt.Color(255, 151, 22));
         btnBeranda.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnBeranda.setForeground(new java.awt.Color(255, 255, 255));
-        btnBeranda.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/kelompok_empat/resources/iconBeranda.png")).getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH)));
+        btnBeranda.setIcon(new javax.swing.ImageIcon(new ImageResizer("/kelompok_empat/resources/icons/beranda.png").resize(24, 24)));
         btnBeranda.setText("Beranda");
-        btnBeranda.setBorder(null);
+        btnBeranda.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 10, 4, 4));
         btnBeranda.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnBeranda.setIconTextGap(10);
         btnBeranda.setInheritsPopupMenu(true);
@@ -82,9 +109,9 @@ public class NavbarLayout extends RootController {
         btnLogout.setBackground(new java.awt.Color(255, 151, 22));
         btnLogout.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnLogout.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogout.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/kelompok_empat/resources/iconLogout.png")).getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH)));
+        btnLogout.setIcon(new javax.swing.ImageIcon(new ImageResizer("/kelompok_empat/resources/icons/logout.png").resize(24, 24)));
         btnLogout.setText("Logout");
-        btnLogout.setBorder(null);
+        btnLogout.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 10, 4, 4));
         btnLogout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnLogout.setIconTextGap(10);
         btnLogout.setInheritsPopupMenu(true);
@@ -98,9 +125,9 @@ public class NavbarLayout extends RootController {
         btnProfile.setBackground(new java.awt.Color(255, 151, 22));
         btnProfile.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnProfile.setForeground(new java.awt.Color(255, 255, 255));
-        btnProfile.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/kelompok_empat/resources/iconProfile.png")).getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH)));
+        btnProfile.setIcon(new javax.swing.ImageIcon(new ImageResizer("/kelompok_empat/resources/icons/profile.png").resize(24, 24)));
         btnProfile.setText("Profile");
-        btnProfile.setBorder(null);
+        btnProfile.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 10, 4, 4));
         btnProfile.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnProfile.setIconTextGap(10);
         btnProfile.setInheritsPopupMenu(true);
@@ -114,9 +141,9 @@ public class NavbarLayout extends RootController {
         btnPostinganSaya.setBackground(new java.awt.Color(255, 151, 22));
         btnPostinganSaya.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnPostinganSaya.setForeground(new java.awt.Color(255, 255, 255));
-        btnPostinganSaya.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/kelompok_empat/resources/iconPost.png")).getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH)));
+        btnPostinganSaya.setIcon(new javax.swing.ImageIcon(new ImageResizer("/kelompok_empat/resources/icons/post.png").resize(24, 24)));
         btnPostinganSaya.setText("Postingan Saya");
-        btnPostinganSaya.setBorder(null);
+        btnPostinganSaya.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 10, 4, 4));
         btnPostinganSaya.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnPostinganSaya.setIconTextGap(10);
         btnPostinganSaya.setInheritsPopupMenu(true);
@@ -132,14 +159,10 @@ public class NavbarLayout extends RootController {
         pnlSidebarLayout.setHorizontalGroup(
             pnlSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSidebarLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(pnlSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBeranda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPostinganSaya, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
-                .addGap(0, 0, 0))
+            .addComponent(btnBeranda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnPostinganSaya, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
         );
         pnlSidebarLayout.setVerticalGroup(
             pnlSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,12 +179,7 @@ public class NavbarLayout extends RootController {
                 .addGap(50, 50, 50))
         );
 
-        btnBeranda.setBorder(BorderFactory.createEmptyBorder(4, 10, 4, 4));
-        btnLogout.setBorder(BorderFactory.createEmptyBorder(4, 10, 4, 4));
-        btnProfile.setBorder(BorderFactory.createEmptyBorder(4, 10, 4, 4));
-        btnPostinganSaya.setBorder(BorderFactory.createEmptyBorder(4, 10, 4, 4));
-
-        pnlContent.setLayout(new java.awt.GridLayout(1, 0));
+        pnlContent.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,7 +205,7 @@ public class NavbarLayout extends RootController {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         getUserController().logout();
-        bukaFrame("login");
+        openFrame("login");
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed

@@ -4,9 +4,8 @@
  */
 package kelompok_empat.view;
 
-import java.awt.Image;
 import javax.swing.ImageIcon;
-import kelompok_empat.controller.RootController;
+import kelompok_empat.component.ImageResizer;
 import kelompok_empat.entity.Post;
 
 /**
@@ -14,17 +13,18 @@ import kelompok_empat.entity.Post;
  * @author wisnu
  */
 public class PostItem extends javax.swing.JPanel {
-    private RootController controller;
+
+    private NavbarLayout navbarLayout;
     private Post post;
-    
-    public PostItem(RootController controller, Post post) {
-        this.controller = controller;
+
+    public PostItem(NavbarLayout navbarLayout, Post post) {
+        this.navbarLayout = navbarLayout;
         this.post = post;
-        
+
         initComponents();
         updateData();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,6 +41,7 @@ public class PostItem extends javax.swing.JPanel {
         lblAuthor = new javax.swing.JLabel();
         lblTimestamp = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(241, 241, 241));
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setMaximumSize(new java.awt.Dimension(32767, 102));
         setMinimumSize(new java.awt.Dimension(361, 102));
@@ -75,54 +76,56 @@ public class PostItem extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblJudul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblNama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblLokasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblAuthor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblTimestamp)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addComponent(lblTimestamp))
+                    .addComponent(lblNama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblLokasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblJudul)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblNama)
-                .addGap(5, 5, 5)
-                .addComponent(lblLokasi)
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAuthor)
-                    .addComponent(lblTimestamp))
-                .addGap(6, 6, 6))
+                .addGap(0, 8, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblJudul)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNama)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblLokasi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblAuthor)
+                            .addComponent(lblTimestamp)))
+                    .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        controller.bukaPost("detail", post);
+        navbarLayout.viewPost(post);
     }//GEN-LAST:event_formMouseClicked
 
     private void updateData() {
-        if(post.getPathFoto().isBlank()) lblFoto.setIcon(null);
-        else lblFoto.setIcon(new ImageIcon(new ImageIcon(getClass().getResource(post.getPathFoto())).getImage().getScaledInstance(92, 92, Image.SCALE_SMOOTH)));
-        
+        if (post.getPathFoto().isBlank()) {
+            lblFoto.setIcon(null);
+        } else {
+            lblFoto.setIcon(new ImageIcon(new ImageResizer(post.getPathFoto()).resize(92, 92)));
+        }
+
         lblJudul.setText(post.getJudul());
         lblNama.setText(post.getNamaBarang());
         lblLokasi.setText(post.getAlamat());
         lblAuthor.setText("Diposting oleh " + post.getDipostingOleh().getNama());
         lblTimestamp.setText(post.getRelativeTime());
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblAuthor;
     private javax.swing.JLabel lblFoto;
