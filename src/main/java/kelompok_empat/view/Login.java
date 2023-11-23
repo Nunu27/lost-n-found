@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import kelompok_empat.controller.PostController;
 import kelompok_empat.controller.RootController;
 import kelompok_empat.controller.UserController;
 import kelompok_empat.entity.User;
@@ -142,7 +143,7 @@ public class Login extends RootController {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         User user = getUserController().login(tfEmail.getText(), new String(tfPassword.getPassword()));
-        
+
         if (user == null) {
             JOptionPane.showMessageDialog(this, "Email atau password salah!", "Login gagal", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -159,15 +160,24 @@ public class Login extends RootController {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Login frame = new Login();
                 UserController userController = new UserController();
-                
+                PostController postController = new PostController();
+
+                userController.addUser("", "", "081217610185", "");
                 userController.addUser("Wisnu", "wisnu.agung.001@gmail.com", "081217610185", "123456");
-                
-                frame.loadController(userController);
+                postController.tambahPost(userController.getCurrentUser(), "Jam Tangan", "Rolex", "Keputih", "/kelompok_empat/resources/posts/rolex.png", "", "Lost");
+                postController.tambahPost(userController.getCurrentUser(), "Geprek", "Joder", "Keputih", "", "", "Lost");
+                postController.tambahPost(userController.getCurrentUser(), "Pensil", "2B", "Keputih", "", "", "Lost");
+                postController.tambahPost(userController.getCurrentUser(), "Pensil", "2B", "Keputih", "", "", "Lost");
+
+                userController.logout();
+
+                frame.setLocationRelativeTo(null);
+                frame.loadController(userController, postController);
                 frame.setVisible(true);
             }
         });

@@ -39,7 +39,8 @@ public class UserController {
             return false;
         }
 
-        userList.add(new User(nama, email, password, noWa));
+        currentUser = new User(nama, email, password, noWa);
+        userList.add(currentUser);
         return true;
     }
 

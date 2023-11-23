@@ -4,18 +4,26 @@
  */
 package kelompok_empat.view;
 
+import java.util.ArrayList;
+import kelompok_empat.controller.RootController;
+import kelompok_empat.entity.Post;
+
 /**
  *
  * @author wisnu
  */
 public class BerandaNew extends javax.swing.JPanel {
 
+    private RootController controller;
+
     /**
      * Creates new form BerandaNew
      */
-    public BerandaNew() {
+    public BerandaNew(RootController controller) {
+        this.controller = controller;
+
         initComponents();
-        
+        filterPost();
     }
 
     /**
@@ -27,24 +35,34 @@ public class BerandaNew extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        tfKeyword = new javax.swing.JTextField();
+        cbKategori = new javax.swing.JComboBox<>();
+        btnCari = new javax.swing.JButton();
+        contentScroller = new javax.swing.JScrollPane();
+        contentContainer = new javax.swing.JPanel();
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua", "Lost", "Found" }));
+        setBackground(new java.awt.Color(241, 241, 241));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton1.setText("Cari");
+        tfKeyword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfKeywordActionPerformed(evt);
+            }
+        });
 
-        jScrollPane1.setBorder(null);
+        cbKategori.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua", "Lost", "Found" }));
 
-        jList1.setBackground(new java.awt.Color(241, 241, 241));
-        jList1.setBorder(null);
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jList1);
+        btnCari.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnCari.setText("Cari");
+        btnCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariActionPerformed(evt);
+            }
+        });
+
+        contentContainer.setBackground(new java.awt.Color(255, 255, 255));
+        contentContainer.setLayout(new javax.swing.BoxLayout(contentContainer, javax.swing.BoxLayout.PAGE_AXIS));
+        contentScroller.setViewportView(contentContainer);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -52,33 +70,56 @@ public class BerandaNew extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addComponent(jTextField1)
+                .addComponent(tfKeyword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btnCari)
                 .addGap(5, 5, 5))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(contentScroller)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(jComboBox1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(5, 5, 5)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE))
+                    .addComponent(tfKeyword, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(cbKategori)
+                    .addComponent(btnCari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(contentScroller))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
+        filterPost();
+    }//GEN-LAST:event_btnCariActionPerformed
+
+    private void tfKeywordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfKeywordActionPerformed
+        filterPost();
+    }//GEN-LAST:event_tfKeywordActionPerformed
+
+    public void filterPost() {
+        String keyword = tfKeyword.getText();
+        String kategori = cbKategori.getSelectedItem().toString();
+
+        setListContent(controller.getPostController().cariPost(keyword, kategori));
+    }
+
+    public void setListContent(ArrayList<Post> posts) {
+        contentContainer.removeAll();
+        for (Post post : posts) {
+            contentContainer.add(new PostItem(controller, post));
+        }
+
+        contentContainer.updateUI();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton btnCari;
+    private javax.swing.JComboBox<String> cbKategori;
+    private javax.swing.JPanel contentContainer;
+    private javax.swing.JScrollPane contentScroller;
+    private javax.swing.JTextField tfKeyword;
     // End of variables declaration//GEN-END:variables
 }
