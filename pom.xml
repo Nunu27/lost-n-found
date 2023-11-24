@@ -7,15 +7,9 @@
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
-<<<<<<< HEAD
-            <groupId>com.toedter</groupId>
-            <artifactId>jcalendar</artifactId>
-            <version>1.4</version>
-=======
             <groupId>com.formdev</groupId>
             <artifactId>flatlaf</artifactId>
             <version>3.2.5</version>
->>>>>>> master
         </dependency>
     </dependencies>
     <properties>
