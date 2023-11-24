@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,19 +21,14 @@ import javax.swing.filechooser.FileFilter;
  */
 public class ImageUpload extends javax.swing.JPanel {
 
-    private String directory;
-    private String name;
-    private String extension = null;
+    public String directory;
+    public String fileName;
+    public String extension = null;
 
     /**
      * Creates new form ImageUpload2
-     *
-     * @param directory
-     * @param name
      */
-    public ImageUpload(String directory, String name) {
-        this.directory = directory;
-        this.name = name;
+    public ImageUpload() {
 
         initComponents();
 
@@ -86,15 +82,32 @@ public class ImageUpload extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void deleteFile() {
+        if (getImagePath() == null) {
+            return;
+        }
+        Path path = Paths.get(getImagePath());
+
+        if (Files.exists(path)) {
+            try {
+                Files.delete(path);
+            } catch (IOException e) {
+                System.err.println("Error deleting file: " + e.getMessage());
+            }
+        }
+    }
+
     private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
+
         int result = fileChooser.showOpenDialog(this);
 
         if (result == JFileChooser.APPROVE_OPTION) {
+            deleteFile();
             try {
                 File file = fileChooser.getSelectedFile();
-                String fileName = file.getName();
-                String fileExtension = fileName.substring(fileName.lastIndexOf('.'));
-                String destinationPath = getDirectory() + name + fileExtension;
+                String rawName = file.getName();
+                String fileExtension = rawName.substring(rawName.lastIndexOf('.'));
+                String destinationPath = getDirectory() + fileName + fileExtension;
 
                 Path destination = new File(destinationPath).toPath();
                 Files.copy(file.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);
@@ -113,7 +126,7 @@ public class ImageUpload extends javax.swing.JPanel {
         if (extension == null) {
             return null;
         }
-        return getDirectory() + name + extension;
+        return getDirectory() + fileName + extension;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
