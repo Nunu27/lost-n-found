@@ -1,21 +1,30 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package kelompok_empat.view;
 
-import kelompok_empat.controller.RootController;
+import java.awt.Dimension;
+import java.util.ArrayList;
+import javax.swing.JSeparator;
+import kelompok_empat.entity.Post;
 
 /**
  *
  * @author wisnu
  */
-public class Beranda extends RootController {
+public class Beranda extends javax.swing.JPanel {
+
+    private NavbarLayout navbarLayout;
 
     /**
-     * Creates new form Beranda
+     * Creates new form BerandaNew
+     *
+     * @param navbarLayout
      */
-    public Beranda() {
+    public Beranda(NavbarLayout navbarLayout) {
+        this.navbarLayout = navbarLayout;
+
         initComponents();
     }
 
@@ -28,70 +37,99 @@ public class Beranda extends RootController {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jButton1 = new javax.swing.JButton();
+        separator = new javax.swing.JSeparator();
+        tfKeyword = new javax.swing.JTextField();
+        cbKategori = new javax.swing.JComboBox<>();
+        btnCari = new javax.swing.JButton();
+        contentScroller = new javax.swing.JScrollPane();
+        contentContainer = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Beranda - LostNFound");
-        setMinimumSize(new java.awt.Dimension(500, 0));
+        separator.setMaximumSize(new java.awt.Dimension(32767, 10));
 
-        jTextField1.setToolTipText("Cari post");
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jTextField1.setOpaque(true);
+        setBackground(new java.awt.Color(241, 241, 241));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua", "Lost", "Found" }));
-        jComboBox1.setBorder(null);
+        tfKeyword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfKeywordActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Cari");
+        cbKategori.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua", "Lost", "Found" }));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        btnCari.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnCari.setText("Cari");
+        btnCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariActionPerformed(evt);
+            }
+        });
+
+        contentContainer.setBackground(new java.awt.Color(255, 255, 255));
+        contentContainer.setLayout(new javax.swing.BoxLayout(contentContainer, javax.swing.BoxLayout.Y_AXIS));
+        contentScroller.setViewportView(contentContainer);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(tfKeyword, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap())
-            .addComponent(jScrollPane1)
+                .addComponent(btnCari)
+                .addGap(5, 5, 5))
+            .addComponent(contentScroller)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tfKeyword, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(cbKategori)
+                    .addComponent(btnCari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE))
+                .addComponent(contentScroller, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Beranda().setVisible(true);
-            }
-        });
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
+        filterPost();
+    }//GEN-LAST:event_btnCariActionPerformed
+
+    private void tfKeywordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfKeywordActionPerformed
+        filterPost();
+    }//GEN-LAST:event_tfKeywordActionPerformed
+
+    public void filterPost() {
+        String keyword = tfKeyword.getText();
+        String kategori = cbKategori.getSelectedItem().toString();
+
+        setListContent(navbarLayout.getPostController().cariPost(keyword, kategori));
+    }
+
+    public void setListContent(ArrayList<Post> posts) {
+        contentContainer.removeAll();
+        for (Post post : posts) {
+            JSeparator separator = new JSeparator();
+            separator.setMaximumSize(new Dimension(32767, 3));
+            
+            contentContainer.add(new PostItem(navbarLayout, post));
+            contentContainer.add(separator);
+        }
+
+        contentContainer.updateUI();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton btnCari;
+    private javax.swing.JComboBox<String> cbKategori;
+    private javax.swing.JPanel contentContainer;
+    private javax.swing.JScrollPane contentScroller;
+    private javax.swing.JSeparator separator;
+    private javax.swing.JTextField tfKeyword;
     // End of variables declaration//GEN-END:variables
 }

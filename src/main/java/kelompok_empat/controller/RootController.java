@@ -4,10 +4,11 @@
  */
 package kelompok_empat.controller;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import kelompok_empat.view.Beranda;
 import kelompok_empat.view.Login;
+import kelompok_empat.view.NavbarLayout;
 import kelompok_empat.view.Register;
 
 /**
@@ -16,43 +17,63 @@ import kelompok_empat.view.Register;
  */
 public abstract class RootController extends JFrame {
 
-    private UserController userController = new UserController();
+    private UserController userController;
+    private PostController postController;
 
-    public void loadController(UserController userController) {
+    public void loadController(UserController userController, PostController postController) {
         this.userController = userController;
+        this.postController = postController;
     }
 
     public UserController getUserController() {
         return userController;
     }
 
-    private RootController getFrame(String namaFrame) {
-        switch (namaFrame) {
+    public PostController getPostController() {
+        return postController;
+    }
+
+    private RootController getFrame(String name) {
+        switch (name) {
             case "login" -> {
                 return new Login();
             }
             case "register" -> {
                 return new Register();
             }
-            case "beranda" -> {
-                return new Beranda();
+            case "beranda", "profil", "detail_post" -> {
+                return new NavbarLayout(name);
             }
+
             default -> {
                 return null;
             }
         }
     }
 
-    public void bukaFrame(String namaFrame) {
-        RootController frame = getFrame(namaFrame);
+    public void openFrame(String name) {
+        RootController frame = getFrame(name);
 
         if (frame == null) {
             JOptionPane.showMessageDialog(this, "Frame tidak ditemukan!", "Error", JOptionPane.WARNING_MESSAGE);
         } else {
-            frame.loadController(userController);
+            frame.loadController(userController, postController);
             frame.setLocationRelativeTo(this);
+            frame.afterOpen();
             dispose();
             frame.setVisible(true);
         }
+    }
+
+    public void setBarColor(Color color) {
+        getRootPane().putClientProperty("JRootPane.titleBarBackground", color);
+    }
+
+    public void setTitleColor(Color color) {
+        getRootPane().putClientProperty("JRootPane.titleBarForeground", color);
+    }
+
+    public void afterOpen() {
+
     }
 }

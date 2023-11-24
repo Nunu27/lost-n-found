@@ -4,8 +4,15 @@
  */
 package kelompok_empat.view;
 
+import com.formdev.flatlaf.FlatLightLaf;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import kelompok_empat.controller.PostController;
 import kelompok_empat.controller.RootController;
+import kelompok_empat.controller.UserController;
 import kelompok_empat.entity.User;
 
 /**
@@ -35,34 +42,36 @@ public class Login extends RootController {
         tfEmail = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
         tfPassword = new javax.swing.JPasswordField();
-        btnLogin = new javax.swing.JButton();
         pnlFooter = new javax.swing.JPanel();
         txtFooter = new javax.swing.JLabel();
         btnRegister = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
+        setMinimumSize(new java.awt.Dimension(313, 227));
         setName("login"); // NOI18N
+        setResizable(false);
 
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("LostNFound");
 
+        lblEmail.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblEmail.setText("Email");
 
+        tfEmail.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        lblPassword.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblPassword.setText("Password");
 
-        btnLogin.setText("Login");
-        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
-            }
-        });
+        tfPassword.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
+        txtFooter.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtFooter.setText("Belum punya akun?");
         pnlFooter.add(txtFooter);
 
+        btnRegister.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnRegister.setForeground(new java.awt.Color(0, 102, 255));
         btnRegister.setText("register");
         btnRegister.setBorder(null);
@@ -75,29 +84,40 @@ public class Login extends RootController {
         });
         pnlFooter.add(btnRegister);
 
+        btnLogin.setBackground(new java.awt.Color(255, 151, 22));
+        btnLogin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("Login");
+        btnLogin.setRolloverEnabled(false);
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tfEmail)
-                    .addComponent(tfPassword)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                    .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                    .addComponent(tfEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(pnlFooter, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(pnlFooter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addComponent(lblTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblEmail)
@@ -108,39 +128,28 @@ public class Login extends RootController {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlFooter, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(pnlFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        bukaFrame("register");
+        openFrame("register");
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         User user = getUserController().login(tfEmail.getText(), new String(tfPassword.getPassword()));
-        
-        if(user == null) {
+
+        if (user == null) {
             JOptionPane.showMessageDialog(this, "Email atau password salah!", "Login gagal", JOptionPane.WARNING_MESSAGE);
         } else {
-            bukaFrame("beranda");
+            openFrame("beranda");
         }
     }//GEN-LAST:event_btnLoginActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
