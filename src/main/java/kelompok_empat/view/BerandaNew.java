@@ -4,7 +4,10 @@
  */
 package kelompok_empat.view;
 
+import java.awt.Image;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import kelompok_empat.component.AvatarImage;
 import kelompok_empat.controller.RootController;
 import kelompok_empat.entity.Post;
 
@@ -111,7 +114,7 @@ public class BerandaNew extends javax.swing.JPanel {
         for (Post post : posts) {
             contentContainer.add(new PostItem(controller, post));
         }
-
+        contentContainer.add(new AvatarImage("/kelompok_empat/resources/posts/foto.jpg", 1000));
         contentContainer.updateUI();
     }
 
