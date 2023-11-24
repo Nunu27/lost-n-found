@@ -138,7 +138,7 @@ public class Login extends RootController {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        bukaFrame("register");
+        openFrame("register");
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -147,41 +147,9 @@ public class Login extends RootController {
         if (user == null) {
             JOptionPane.showMessageDialog(this, "Email atau password salah!", "Login gagal", JOptionPane.WARNING_MESSAGE);
         } else {
-            bukaFrame("beranda");
+            openFrame("beranda");
         }
     }//GEN-LAST:event_btnLoginActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
-        } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Login frame = new Login();
-                UserController userController = new UserController();
-                PostController postController = new PostController();
-
-                userController.addUser("", "", "081217610185", "");
-                userController.addUser("Wisnu", "wisnu.agung.001@gmail.com", "081217610185", "123456");
-                postController.tambahPost(userController.getCurrentUser(), "Jam Tangan", "Rolex", "Keputih", "/kelompok_empat/resources/posts/rolex.png", "", "Lost");
-                postController.tambahPost(userController.getCurrentUser(), "Geprek", "Joder", "Keputih", "", "", "Lost");
-                postController.tambahPost(userController.getCurrentUser(), "Pensil", "2B", "Keputih", "", "", "Lost");
-                postController.tambahPost(userController.getCurrentUser(), "Pensil", "2B", "Keputih", "", "", "Lost");
-
-                userController.logout();
-
-                frame.setLocationRelativeTo(null);
-                frame.loadController(userController, postController);
-                frame.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;

@@ -76,7 +76,8 @@ public class Post {
     }
 
     public String getPathFoto() {
-        return pathFoto;
+        if(pathFoto == null) return null;
+        return "/kelompok_empat/resources/posts/" + pathFoto;
     }
 
     public String getDeskripsi() {
