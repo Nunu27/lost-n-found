@@ -13,40 +13,57 @@ import kelompok_empat.entity.User;
  * @author Jhiven Agnar
  */
 public class PostController {
+
     private ArrayList<Post> listPost;
-    
-    public PostController(){
+
+    public PostController() {
         this.listPost = new ArrayList<>();
     }
-    
-    public ArrayList<Post> cariPost(String text, String kategori){
-        
+
+    public ArrayList<Post> cariPost(String text, String kategori) {
+        text = text.toLowerCase();
         ArrayList<Post> hasilCari = new ArrayList<>();
-        
-        for(Post post : listPost){
-            if((post.getJudul().contains(text) || post.getNamaBarang().contains(text)) && 
-                   (kategori.equals("semua") || post.getKategori().equals(kategori))){
+
+        for (Post post : listPost) {
+            boolean keyword = text.isBlank() ? true : post.getJudul().toLowerCase().contains(text) || post.getNamaBarang().toLowerCase().contains(text);
+            boolean checkKategori = kategori.equals("Semua") || post.getKategori().equals(kategori);
+
+            if (keyword && checkKategori) {
                 hasilCari.add(post);
             }
         }
-        
+
         return hasilCari;
     }
-    
-    public void hapusPost(Post post){
+
+    public ArrayList<Post> cariPost(User user) {
+
+        ArrayList<Post> hasilCari = new ArrayList<>();
+
+        for (Post post : listPost) {
+            if (post.getDipostingOleh() == user) {
+                hasilCari.add(post);
+            }
+        }
+
+        return hasilCari;
+    }
+
+    public void hapusPost(Post post) {
         this.listPost.remove(post);
     }
-    
-    public void tambahPost(User user, String namaBarang, String alamat, 
-            String judul, String pathFoto, String deskripsi, String kategori){
-        this.listPost.add(new Post(user, namaBarang, alamat, judul, kategori));
-        
-        if(!pathFoto.isBlank()){
-            this.listPost.get(this.listPost.size()-1).setPathFoto(pathFoto);
+
+    public void tambahPost(User user, String judul, String namaBarang, String alamat,
+            String pathFoto, String deskripsi, String kategori) {
+        Post post = new Post(user, namaBarang, alamat, judul, kategori);
+
+        if (!pathFoto.isBlank()) {
+            post.setPathFoto(pathFoto);
         }
-        
-        if(!deskripsi.isBlank()){
-            this.listPost.get(this.listPost.size()-1).setDeskripsi(deskripsi);
+        if (!deskripsi.isBlank()) {
+            post.setDeskripsi(deskripsi);
         }
+
+        this.listPost.add(post);
     }
 }
