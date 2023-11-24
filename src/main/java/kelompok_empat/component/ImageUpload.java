@@ -129,6 +129,20 @@ public class ImageUpload extends javax.swing.JPanel {
         return getDirectory() + fileName + extension;
     }
 
+    public void setFileName(String newFileName) {
+        if (getImagePath() == null) {
+            return;
+        }
+        Path oldPath = Paths.get(getImagePath());
+        fileName = newFileName;
+        Path newPath = Paths.get(getImagePath());
+
+        try {
+            Files.move(oldPath, newPath);
+        } catch (IOException e) {
+            System.err.println("Error renaming file: " + e.getMessage());
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUpload;
     private javax.swing.JFileChooser fileChooser;
