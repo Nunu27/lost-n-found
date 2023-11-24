@@ -179,7 +179,7 @@ public class Register extends RootController {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         btnUpload.setFileName(tfEmail.getText());
-        getUserController().addUser(tfNama.getText(), tfEmail.getText(), tfWa.getText(), new String(tfPassword.getPassword()));
+        getUserController().addUser(btnUpload.getImagePath(), tfNama.getText(), tfEmail.getText(), tfWa.getText(), new String(tfPassword.getPassword()));
         openFrame("beranda");
     }//GEN-LAST:event_btnRegisterActionPerformed
 

@@ -34,12 +34,12 @@ public class UserController {
         return false;
     }
 
-    public boolean addUser(String nama, String email, String noWa, String password) {
+    public boolean addUser(String fotoProfil, String nama, String email, String noWa, String password) {
         if (checkUser(email)) {
             return false;
         }
 
-        currentUser = new User(nama, email, password, noWa);
+        currentUser = new User(fotoProfil, nama, email, password, noWa);
         userList.add(currentUser);
         return true;
     }
@@ -52,6 +52,7 @@ public class UserController {
         for (User user : userList) {
             if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
                 currentUser = user;
+                user.bukaKontak();
                 return user;
             }
         }

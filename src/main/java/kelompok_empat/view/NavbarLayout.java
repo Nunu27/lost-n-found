@@ -81,6 +81,7 @@ public class NavbarLayout extends RootController {
         pnlContent = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Lost N Found");
         setMinimumSize(new java.awt.Dimension(853, 453));
 
         pnlSidebar.setBackground(new java.awt.Color(255, 151, 22));
@@ -91,11 +92,11 @@ public class NavbarLayout extends RootController {
         lblTitle.setText("LostNFound");
 
         btnBeranda.setBackground(new java.awt.Color(255, 151, 22));
-        btnBeranda.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBeranda.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnBeranda.setForeground(new java.awt.Color(255, 255, 255));
         btnBeranda.setIcon(new javax.swing.ImageIcon(new ImageResizer("/kelompok_empat/resources/icons/beranda.png").resize(24, 24)));
         btnBeranda.setText("Beranda");
-        btnBeranda.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 10, 4, 4));
+        btnBeranda.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 15, 4, 4));
         btnBeranda.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnBeranda.setIconTextGap(10);
         btnBeranda.setInheritsPopupMenu(true);
@@ -107,11 +108,11 @@ public class NavbarLayout extends RootController {
         });
 
         btnLogout.setBackground(new java.awt.Color(255, 151, 22));
-        btnLogout.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnLogout.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnLogout.setForeground(new java.awt.Color(255, 255, 255));
         btnLogout.setIcon(new javax.swing.ImageIcon(new ImageResizer("/kelompok_empat/resources/icons/logout.png").resize(24, 24)));
         btnLogout.setText("Logout");
-        btnLogout.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 10, 4, 4));
+        btnLogout.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 15, 4, 4));
         btnLogout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnLogout.setIconTextGap(10);
         btnLogout.setInheritsPopupMenu(true);
@@ -123,11 +124,11 @@ public class NavbarLayout extends RootController {
         });
 
         btnProfile.setBackground(new java.awt.Color(255, 151, 22));
-        btnProfile.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnProfile.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnProfile.setForeground(new java.awt.Color(255, 255, 255));
         btnProfile.setIcon(new javax.swing.ImageIcon(new ImageResizer("/kelompok_empat/resources/icons/profile.png").resize(24, 24)));
         btnProfile.setText("Profile");
-        btnProfile.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 10, 4, 4));
+        btnProfile.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 15, 4, 4));
         btnProfile.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnProfile.setIconTextGap(10);
         btnProfile.setInheritsPopupMenu(true);
@@ -139,11 +140,11 @@ public class NavbarLayout extends RootController {
         });
 
         btnPostinganSaya.setBackground(new java.awt.Color(255, 151, 22));
-        btnPostinganSaya.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnPostinganSaya.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnPostinganSaya.setForeground(new java.awt.Color(255, 255, 255));
         btnPostinganSaya.setIcon(new javax.swing.ImageIcon(new ImageResizer("/kelompok_empat/resources/icons/post.png").resize(24, 24)));
         btnPostinganSaya.setText("Postingan Saya");
-        btnPostinganSaya.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 10, 4, 4));
+        btnPostinganSaya.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 15, 4, 4));
         btnPostinganSaya.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnPostinganSaya.setIconTextGap(10);
         btnPostinganSaya.setInheritsPopupMenu(true);
@@ -168,7 +169,7 @@ public class NavbarLayout extends RootController {
             pnlSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSidebarLayout.createSequentialGroup()
                 .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(7, 7, 7)
                 .addComponent(btnBeranda, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
