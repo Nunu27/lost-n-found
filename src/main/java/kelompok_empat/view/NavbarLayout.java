@@ -24,25 +24,29 @@ public class NavbarLayout extends RootController {
     public NavbarLayout() {
         initComponents();
 
-        pnlContent.add(new Beranda(this), "beranda");
-
         setBarColor(Color.decode("#FF9717"));
         setTitleColor(Color.white);
     }
 
     public NavbarLayout(String page) {
         this();
-        switchPage(page);
     }
 
     @Override
     public void afterOpen() {
-        if ("beranda".equals(currentPage)) {
-            ((Beranda) pnlContent.getComponent(0)).filterPost();
-        }
+        Beranda beranda = new Beranda(this);
+        Profile profile = new Profile(this);
+        EditProfile editProfile = new EditProfile(this);
+        
+        pnlContent.add(beranda, "beranda");
+        pnlContent.add(profile, "profile");
+        pnlContent.add(editProfile, "editProfile");
+        
+        beranda.filterPost();
+            
     }
 
-    private void switchPage(String page) {
+    public void switchPage(String page) {
         CardLayout layout = (CardLayout) pnlContent.getLayout();
         layout.show(pnlContent, page);
 
@@ -54,8 +58,12 @@ public class NavbarLayout extends RootController {
 
     private void setButtonColor(String page, Color color) {
         switch (page) {
-            case "beranda" ->
+            case "beranda" -> {
                 btnBeranda.setBackground(color);
+            }
+            case "profile", "editProfile" -> {
+                btnProfile.setBackground(color);
+            }
         }
     }
 
@@ -201,7 +209,7 @@ public class NavbarLayout extends RootController {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBerandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBerandaActionPerformed
-        // TODO add your handling code here:
+        switchPage("beranda");
     }//GEN-LAST:event_btnBerandaActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -210,7 +218,7 @@ public class NavbarLayout extends RootController {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
-        // TODO add your handling code here:
+        switchPage("profile");
     }//GEN-LAST:event_btnProfileActionPerformed
 
     private void btnPostinganSayaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostinganSayaActionPerformed

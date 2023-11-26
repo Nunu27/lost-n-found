@@ -52,7 +52,7 @@ public class UserController {
         for (User user : userList) {
             if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
                 currentUser = user;
-                user.bukaKontak();
+//                user.bukaKontak();
                 return user;
             }
         }

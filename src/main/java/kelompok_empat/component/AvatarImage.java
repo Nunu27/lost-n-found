@@ -5,7 +5,6 @@
 package kelompok_empat.component;
 
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
@@ -17,7 +16,8 @@ import javax.swing.ImageIcon;
 public class AvatarImage extends javax.swing.JPanel {
 
     private String imagePath;
-    public int cornerRadius = 0;
+    private int width = 94;
+    private int height = 94; 
 
     /**
      * Creates new form AvatarImage
@@ -32,15 +32,9 @@ public class AvatarImage extends javax.swing.JPanel {
     }
 
     public ImageIcon getImage(ImageIcon originalIcon) {
-        if (cornerRadius == 0) {
-            cornerRadius = lblFoto.getWidth();
-        }
-        int width = lblFoto.getWidth();
-        int height = lblFoto.getHeight();
-
-        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        BufferedImage image = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = image.createGraphics();
-        RoundRectangle2D roundedRectangle = new RoundRectangle2D.Float(0, 0, width, height, cornerRadius, cornerRadius);
+        RoundRectangle2D roundedRectangle = new RoundRectangle2D.Float(0, 0, this.width, this.height, this.width, this.height);
         g2d.setClip(roundedRectangle);
         originalIcon.paintIcon(null, g2d, 0, 0);
         g2d.dispose();
@@ -49,7 +43,12 @@ public class AvatarImage extends javax.swing.JPanel {
     }
 
     private void updateImage() {
-        lblFoto.setIcon(getImage(new ImageIcon(new ImageResizer(imagePath).resize(lblFoto.getWidth(), lblFoto.getHeight()))));
+        lblFoto.setIcon(getImage(new ImageIcon(new ImageResizer(imagePath).resize(this.width, this.height))));
+    }
+    
+    public void setSize(int width, int height){
+        this.width = width;
+        this.height = height;
     }
 
     /**
