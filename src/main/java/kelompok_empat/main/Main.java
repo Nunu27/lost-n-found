@@ -35,7 +35,7 @@ public class Main {
                 UserController userController = new UserController();
                 PostController postController = new PostController();
 
-                userController.addUser("", "", "081217610185", "");
+                userController.addUser("Jhiven Agnar Fuad", "", "081217610185", "");
                 userController.addUser("Wisnu", "wisnu.agung.001@gmail.com", "081217610185", "123456");
                 postController.tambahPost(userController.getCurrentUser(), "Bolpen ilang!", "Pilot", "PENS HH101", "bolpen.jpg", "", "Lost");
                 postController.tambahPost(userController.getCurrentUser(), "HP ilang", "iPhone", "Starbuck", "iphone.png", "", "Lost");

@@ -25,6 +25,7 @@ public class NavbarLayout extends RootController {
         initComponents();
 
         pnlContent.add(new Beranda(this), "beranda");
+        pnlContent.add(new Profile(getUserController().getCurrentUser()), "profile");
 
         setBarColor(Color.decode("#FF9717"));
         setTitleColor(Color.white);
@@ -32,7 +33,7 @@ public class NavbarLayout extends RootController {
 
     public NavbarLayout(String page) {
         this();
-        switchPage(page);
+        switchPage("beranda");
     }
 
     @Override
@@ -54,8 +55,12 @@ public class NavbarLayout extends RootController {
 
     private void setButtonColor(String page, Color color) {
         switch (page) {
-            case "beranda" ->
+            case "beranda" -> {
                 btnBeranda.setBackground(color);
+            }
+            case "profile" -> {
+                btnProfile.setBackground(color);
+            }
         }
     }
 
@@ -200,7 +205,7 @@ public class NavbarLayout extends RootController {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBerandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBerandaActionPerformed
-        // TODO add your handling code here:
+        switchPage("beranda");
     }//GEN-LAST:event_btnBerandaActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -209,7 +214,7 @@ public class NavbarLayout extends RootController {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
-        // TODO add your handling code here:
+        switchPage("profile");
     }//GEN-LAST:event_btnProfileActionPerformed
 
     private void btnPostinganSayaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostinganSayaActionPerformed
