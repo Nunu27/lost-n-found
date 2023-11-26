@@ -113,12 +113,19 @@ public class Beranda extends javax.swing.JPanel {
 
     public void setListContent(ArrayList<Post> posts) {
         contentContainer.removeAll();
-        for (Post post : posts) {
-            JSeparator separator = new JSeparator();
-            separator.setMaximumSize(new Dimension(32767, 3));
-            
-            contentContainer.add(new PostItem(navbarLayout, post));
-            contentContainer.add(separator);
+
+        if (posts.isEmpty()) {
+            System.out.println("tidak ditemukan");
+            contentContainer.add(new NotFound());
+        } else {
+            System.out.println("ditemukan");
+            for (Post post : posts) {
+                JSeparator separator = new JSeparator();
+                separator.setMaximumSize(new Dimension(32767, 3));
+
+                contentContainer.add(new PostItem(navbarLayout, post));
+                contentContainer.add(separator);
+            }
         }
 
         contentContainer.updateUI();
