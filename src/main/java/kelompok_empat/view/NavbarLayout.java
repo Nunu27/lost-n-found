@@ -38,6 +38,7 @@ public class NavbarLayout extends RootController {
         Profile profile = new Profile(this);
         EditProfile editProfile = new EditProfile(this);
         
+        
         pnlContent.add(beranda, "beranda");
         pnlContent.add(profile, "profile");
         pnlContent.add(editProfile, "editProfile");
