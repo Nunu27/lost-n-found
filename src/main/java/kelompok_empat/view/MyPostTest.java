@@ -15,10 +15,11 @@ public class MyPostTest {
     MyPost panel = new MyPost();
     
     private void initialize(){
+        
         for(int i = 1; i <= 10; i++){
             panel.tambahMyPost();
         }        
-        frame.setSize(692, 365);
+        frame.setSize(700, 365);
         frame.add(panel);
         frame.setVisible(true);
         

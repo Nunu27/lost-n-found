@@ -18,6 +18,7 @@ public class MyPost extends javax.swing.JPanel {
      */
     public MyPost() {
         initComponents();
+        setupGridLayout();
     }
 
     /**
@@ -38,8 +39,17 @@ public class MyPost extends javax.swing.JPanel {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         panelContainer.setBackground(new java.awt.Color(255, 255, 204));
-        GridLayout panelContainerLayout = new GridLayout(0, 3, 10, 10); // 0 baris (tak terbatas), 3 kolom, jarak horizontal 10, jarak vertikal 10
+
+        javax.swing.GroupLayout panelContainerLayout = new javax.swing.GroupLayout(panelContainer);
         panelContainer.setLayout(panelContainerLayout);
+        panelContainerLayout.setHorizontalGroup(
+            panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 690, Short.MAX_VALUE)
+        );
+        panelContainerLayout.setVerticalGroup(
+            panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 310, Short.MAX_VALUE)
+        );
 
         jScrollPane1.setViewportView(panelContainer);
         jScrollPane1.getViewport().setPreferredSize(panelContainer.getPreferredSize());
@@ -75,10 +85,16 @@ public class MyPost extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setupGridLayout() {
+        GridLayout panelContainerLayout = new GridLayout(0, 3, 10, 10); // 0 baris (tak terbatas), 3 kolom, jarak horizontal 10, jarak vertikal 10
+        panelContainer.setLayout(panelContainerLayout);
+    }
+    
     public void tambahMyPost(){
         MyPostItem panelPostingan = new MyPostItem();
         panelContainer.add(panelPostingan);
-	validate();
+	panelContainer.revalidate();
+        panelContainer.repaint();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
