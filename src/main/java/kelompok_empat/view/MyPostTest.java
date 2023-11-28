@@ -12,7 +12,7 @@ import javax.swing.JFrame;
  */
 public class MyPostTest {
     JFrame frame = new JFrame();
-    MyPost panel = new MyPost();
+    MyPost panel = new MyPost();    
     
     private void initialize(){
         
