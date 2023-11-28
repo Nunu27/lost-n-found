@@ -11,7 +11,7 @@ package kelompok_empat.view;
 public class NotFound extends javax.swing.JPanel {
 
     /**
-     * Creates new form Tes
+     * Creates new form NotFound
      */
     public NotFound() {
         initComponents();
@@ -27,44 +27,41 @@ public class NotFound extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
+        content = new javax.swing.JPanel();
         lblTidakDitemukan = new javax.swing.JLabel();
         lblGantiPencarian = new javax.swing.JLabel();
         fotoTidakDitemukan = new javax.swing.JLabel();
 
         setLayout(new java.awt.GridBagLayout());
 
+        lblTidakDitemukan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTidakDitemukan.setText("Yahh.. perncarianmu ngga ada ");
 
-        lblGantiPencarian.setText("Cobak ganti keyword lain");
+        lblGantiPencarian.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblGantiPencarian.setText("Coba pake keyword lain");
 
-        fotoTidakDitemukan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kelompok_empat/resources/NF.png"))); // NOI18N
+        fotoTidakDitemukan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kelompok_empat/resources/not_found.png"))); // NOI18N
         fotoTidakDitemukan.setText(".");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
+        content.setLayout(contentLayout);
+        contentLayout.setHorizontalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblTidakDitemukan)
-                        .addComponent(fotoTidakDitemukan, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(lblGantiPencarian)
-                        .addGap(13, 13, 13)))
-                .addContainerGap())
+                .addComponent(fotoTidakDitemukan, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(lblTidakDitemukan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblGantiPencarian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        contentLayout.setVerticalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(fotoTidakDitemukan, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTidakDitemukan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(lblGantiPencarian)
                 .addContainerGap())
         );
@@ -74,13 +71,13 @@ public class NotFound extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 100, 6, 111);
-        add(jPanel1, gridBagConstraints);
+        add(content, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel content;
     private javax.swing.JLabel fotoTidakDitemukan;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblGantiPencarian;
     private javax.swing.JLabel lblTidakDitemukan;
     // End of variables declaration//GEN-END:variables

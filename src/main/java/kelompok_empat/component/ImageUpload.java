@@ -4,6 +4,7 @@
  */
 package kelompok_empat.component;
 
+import kelompok_empat.helper.ImageResizer;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,15 +22,17 @@ import javax.swing.filechooser.FileFilter;
  */
 public class ImageUpload extends javax.swing.JPanel {
 
+    private String placeholder = null;
+    private String rawPath;
     public String directory;
     public String fileName;
     public String extension = null;
+    AvatarImage avatarImage = null;
 
     /**
      * Creates new form ImageUpload2
      */
     public ImageUpload() {
-
         initComponents();
 
         fileChooser.setFileFilter(new FileFilter() {
@@ -82,8 +85,17 @@ public class ImageUpload extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setPlaceholder(String placeholder) {
+        this.placeholder = placeholder;
+    }
+
+    public void setAvatarImage(AvatarImage avatarImage) {
+        this.avatarImage = avatarImage;
+        avatarImage.setImage(getImagePath());
+    }
+
     public void deleteFile() {
-        if (getImagePath() == null) {
+        if (directory == null || fileName == null || getImagePath() == null || getImagePath().equals(placeholder)) {
             return;
         }
         Path path = Paths.get(getImagePath());
@@ -105,13 +117,21 @@ public class ImageUpload extends javax.swing.JPanel {
             deleteFile();
             try {
                 File file = fileChooser.getSelectedFile();
-                String rawName = file.getName();
-                String fileExtension = rawName.substring(rawName.lastIndexOf('.'));
-                String destinationPath = getDirectory() + fileName + fileExtension;
+                rawPath = file.getAbsolutePath();
 
-                Path destination = new File(destinationPath).toPath();
-                Files.copy(file.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);
-                extension = fileExtension;
+                if (directory != null && fileName != null) {
+                    String rawName = file.getName();
+                    String fileExtension = rawName.substring(rawName.lastIndexOf('.'));
+                    String destinationPath = getDirectory() + directory + fileName + fileExtension;
+
+                    Path destination = new File(destinationPath).toPath();
+                    Files.copy(file.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);
+                    extension = fileExtension;
+                }
+
+                if (avatarImage != null) {
+                    avatarImage.setImage(getImagePath());
+                }
             } catch (IOException ex) {
                 Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
             }
@@ -119,14 +139,17 @@ public class ImageUpload extends javax.swing.JPanel {
     }//GEN-LAST:event_btnUploadActionPerformed
 
     private String getDirectory() {
-        return System.getProperty("user.dir") + "/src/main/java" + directory;
+        return System.getProperty("user.dir") + "/src/main/java";
     }
 
     public String getImagePath() {
+        if (directory == null || fileName == null) {
+            return rawPath == null ? placeholder : rawPath;
+        }
         if (extension == null) {
             return null;
         }
-        return getDirectory() + fileName + extension;
+        return directory + fileName + extension;
     }
 
     public void setFileName(String newFileName) {
