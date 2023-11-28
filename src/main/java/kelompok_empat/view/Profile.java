@@ -10,30 +10,32 @@ import kelompok_empat.entity.User;
  *
  * @author Jhiven Agnar
  */
-public class Profile extends javax.swing.JPanel {
+public class Profile extends javax.swing.JPanel implements DataConsumer {
+
     private NavbarLayout navbarLayout;
+
     /**
      * Creates new form ProfilePanel1
+     *
      * @param navbarLayout
      */
     public Profile(NavbarLayout navbarLayout) {
         this.navbarLayout = navbarLayout;
-        
+
         initComponents();
         fotoProfile.setSize(200, 200);
-        
-        setUser();   
     }
-    
-    public void setUser(){
+
+    @Override
+    public void updateData() {
         User user = navbarLayout.getUserController().getCurrentUser();
-        
+
         lblEmail.setText(user.getEmail());
         lblNama.setText(user.getNama());
         lblNoWa.setText(user.getNoWa());
         fotoProfile.setImage(user.getFotoProfil());
     }
-   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,29 +48,38 @@ public class Profile extends javax.swing.JPanel {
         lblNama = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
         lblNoWa = new javax.swing.JLabel();
-        btnHapusAkun = new javax.swing.JButton();
-        btnEditProfile = new javax.swing.JButton();
         fotoProfile = new kelompok_empat.component.AvatarImage();
+        btnHapus = new javax.swing.JButton();
+        lblTitle = new javax.swing.JLabel();
+        btnEdit = new javax.swing.JButton();
 
         lblNama.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblNama.setText("Muhammad Rafli Dhziaulhaq");
 
-        lblEmail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblEmail.setText("rafli@dhziaulhaq@gmail.com");
 
-        lblNoWa.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblNoWa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblNoWa.setText("01231238123");
 
-        btnHapusAkun.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnHapusAkun.setText("Hapus Akun");
-        btnHapusAkun.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        btnEditProfile.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnEditProfile.setText("Edit profile");
-        btnEditProfile.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnEditProfile.addActionListener(new java.awt.event.ActionListener() {
+        btnHapus.setBackground(new java.awt.Color(255, 51, 51));
+        btnHapus.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnHapus.setForeground(new java.awt.Color(255, 255, 255));
+        btnHapus.setText("Hapus Akun");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditProfileActionPerformed(evt);
+                btnHapusActionPerformed(evt);
+            }
+        });
+
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblTitle.setText("Profile");
+
+        btnEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEdit.setText("Edit Profile");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
             }
         });
 
@@ -78,60 +89,62 @@ public class Profile extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(fotoProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitle)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addComponent(fotoProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblNama)
-                                .addGap(20, 20, 20))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnHapusAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnEditProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(54, 54, 54))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(lblNoWa))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(lblEmail)))
-                        .addContainerGap())))
+                            .addComponent(lblNoWa)
+                            .addComponent(lblNama)
+                            .addComponent(lblEmail))))
+                .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lblTitle)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fotoProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblNama, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblEmail)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblNoWa)
-                        .addGap(67, 67, 67)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnHapusAkun)
-                            .addComponent(btnEditProfile)))
-                    .addComponent(fotoProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addGap(0, 0, 0)
+                        .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNoWa)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEditProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditProfileActionPerformed
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         navbarLayout.switchPage("editProfile");
-    }//GEN-LAST:event_btnEditProfileActionPerformed
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        navbarLayout.getUserController().removeUser();
+        navbarLayout.openFrame("login");
+    }//GEN-LAST:event_btnHapusActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEditProfile;
-    private javax.swing.JButton btnHapusAkun;
+    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnHapus;
     protected kelompok_empat.component.AvatarImage fotoProfile;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblNama;
     private javax.swing.JLabel lblNoWa;
+    private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }
