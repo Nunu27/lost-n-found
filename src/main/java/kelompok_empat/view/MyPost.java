@@ -4,7 +4,6 @@
  */
 package kelompok_empat.view;
 
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 /**
@@ -37,8 +36,6 @@ public class MyPost extends javax.swing.JPanel {
         btnCari = new javax.swing.JButton();
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        panelContainer.setBackground(new java.awt.Color(255, 255, 204));
 
         javax.swing.GroupLayout panelContainerLayout = new javax.swing.GroupLayout(panelContainer);
         panelContainer.setLayout(panelContainerLayout);

@@ -35,7 +35,6 @@ public class MyPostItem extends javax.swing.JPanel {
         labelKategori = new javax.swing.JLabel();
         labelTanggal = new javax.swing.JLabel();
 
-        panelPostingan.setBackground(new java.awt.Color(255, 204, 204));
         panelPostingan.setForeground(new java.awt.Color(255, 204, 204));
 
         labelFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
