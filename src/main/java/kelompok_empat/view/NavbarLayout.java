@@ -38,8 +38,10 @@ public class NavbarLayout extends RootController {
         Beranda beranda = new Beranda(this);
         Profile profile = new Profile(this);
         EditProfile editProfile = new EditProfile(this);
-
+        MyPost myPost = new MyPost();
+        
         pnlContent.add(beranda, "beranda");
+        pnlContent.add(myPost, "myPost");
         pnlContent.add(profile, "profile");
         pnlContent.add(editProfile, "editProfile");
 
@@ -79,13 +81,15 @@ public class NavbarLayout extends RootController {
             case "profile", "editProfile" -> {
                 btnProfile.setBackground(color);
             }
+            case "myPost" -> {
+                btnPostinganSaya.setBackground(color);
+            }
         }
     }
 
     public void viewPost(Post post) {
         System.out.println("hai " + post.getJudul());
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -237,7 +241,7 @@ public class NavbarLayout extends RootController {
     }//GEN-LAST:event_btnProfileActionPerformed
 
     private void btnPostinganSayaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostinganSayaActionPerformed
-        // TODO add your handling code here:
+        switchPage("myPost");
     }//GEN-LAST:event_btnPostinganSayaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
