@@ -4,7 +4,10 @@
  */
 package kelompok_empat.view;
 
+import javax.swing.JOptionPane;
 import kelompok_empat.controller.RootController;
+import kelompok_empat.controller.UserController;
+import kelompok_empat.helper.Validator;
 
 /**
  *
@@ -12,13 +15,13 @@ import kelompok_empat.controller.RootController;
  */
 public class Register extends RootController {
 
+    private Validator validator = new Validator();
+
     /**
      * Creates new form Login
      */
     public Register() {
         initComponents();
-        
-        avatarImg.setImage("/kelompok_empat/resources/profile_placeholder.jpg");
     }
 
     /**
@@ -43,7 +46,8 @@ public class Register extends RootController {
         tfWa = new javax.swing.JTextField();
         lblWa = new javax.swing.JLabel();
         btnRegister = new javax.swing.JButton();
-        btnUpload = new kelompok_empat.component.ImageUpload();
+        jPanel1 = new javax.swing.JPanel();
+        imgUpload = new kelompok_empat.component.ImageUpload();
         avatarImg = new kelompok_empat.component.AvatarImage();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -102,8 +106,12 @@ public class Register extends RootController {
             }
         });
 
-        btnUpload.directory = "/kelompok_empat/resources/users/";
-        btnUpload.fileName = "temp";
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        imgUpload.setPlaceholder("/kelompok_empat/resources/profile_placeholder.jpg");
+        imgUpload.setAvatarImage(avatarImg);
+        jPanel1.add(imgUpload, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+        jPanel1.add(avatarImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 100));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,43 +121,39 @@ public class Register extends RootController {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                    .addComponent(tfWa, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tfPassword, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tfEmail, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tfNama, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(10, 10, 10))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPassword)
-                            .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblWa))
-                        .addGap(21, 236, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblNama)
-                        .addGap(65, 65, 65)
-                        .addComponent(avatarImg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnUpload, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(10, 10, 10))
+                            .addComponent(tfWa, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tfPassword, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tfEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tfNama, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnRegister, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPassword)
+                                    .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblWa)
+                                    .addComponent(lblNama))
+                                .addGap(236, 236, 236)))
+                        .addGap(10, 10, 10))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTitle)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(lblNama)
-                        .addGap(4, 4, 4))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnUpload, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(avatarImg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblNama)
+                .addGap(4, 4, 4)
                 .addComponent(tfNama, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblEmail)
@@ -167,7 +171,7 @@ public class Register extends RootController {
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(pnlFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -178,16 +182,32 @@ public class Register extends RootController {
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        btnUpload.setFileName(tfEmail.getText());
-        getUserController().addUser(btnUpload.getImagePath(), tfNama.getText(), tfEmail.getText(), tfWa.getText(), new String(tfPassword.getPassword()));
-        openFrame("beranda");
+        UserController userController = getUserController();
+
+        String fotoProfil = imgUpload.getImagePath();
+        String email = tfEmail.getText();
+        String nama = tfNama.getText();
+        String noWa = tfWa.getText();
+        String password = new String(tfPassword.getPassword());
+
+        if (!validator.validateUserData(nama, email, noWa, password)) {
+            return;
+        }
+        
+        if (userController.checkUser(email)) {
+            JOptionPane.showMessageDialog(this, "Email sudah terdaftar!", "Register Gagal", JOptionPane.WARNING_MESSAGE);
+        } else {
+            userController.addUser(fotoProfil, nama, email, noWa, password);
+            openFrame("beranda");
+        }
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private kelompok_empat.component.AvatarImage avatarImg;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegister;
-    private kelompok_empat.component.ImageUpload btnUpload;
+    private kelompok_empat.component.ImageUpload imgUpload;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblNama;
     private javax.swing.JLabel lblPassword;

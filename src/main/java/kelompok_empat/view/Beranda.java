@@ -13,7 +13,7 @@ import kelompok_empat.entity.Post;
  *
  * @author wisnu
  */
-public class Beranda extends javax.swing.JPanel {
+public class Beranda extends javax.swing.JPanel implements DataConsumer {
 
     private NavbarLayout navbarLayout;
 
@@ -37,14 +37,11 @@ public class Beranda extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        separator = new javax.swing.JSeparator();
         tfKeyword = new javax.swing.JTextField();
         cbKategori = new javax.swing.JComboBox<>();
         btnCari = new javax.swing.JButton();
         contentScroller = new javax.swing.JScrollPane();
         contentContainer = new javax.swing.JPanel();
-
-        separator.setMaximumSize(new java.awt.Dimension(32767, 10));
 
         setBackground(new java.awt.Color(241, 241, 241));
 
@@ -96,6 +93,11 @@ public class Beranda extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    @Override
+    public void updateData() {
+        filterPost();
+    }
+    
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         filterPost();
     }//GEN-LAST:event_btnCariActionPerformed
@@ -115,10 +117,8 @@ public class Beranda extends javax.swing.JPanel {
         contentContainer.removeAll();
 
         if (posts.isEmpty()) {
-            System.out.println("tidak ditemukan");
             contentContainer.add(new NotFound());
         } else {
-            System.out.println("ditemukan");
             for (Post post : posts) {
                 JSeparator separator = new JSeparator();
                 separator.setMaximumSize(new Dimension(32767, 3));
@@ -136,7 +136,6 @@ public class Beranda extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbKategori;
     private javax.swing.JPanel contentContainer;
     private javax.swing.JScrollPane contentScroller;
-    private javax.swing.JSeparator separator;
     private javax.swing.JTextField tfKeyword;
     // End of variables declaration//GEN-END:variables
 }

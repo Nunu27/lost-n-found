@@ -4,22 +4,17 @@
  */
 package kelompok_empat.view;
 
-import com.formdev.flatlaf.FlatLightLaf;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import kelompok_empat.controller.PostController;
 import kelompok_empat.controller.RootController;
-import kelompok_empat.controller.UserController;
-import kelompok_empat.entity.User;
+import kelompok_empat.helper.Validator;
 
 /**
  *
  * @author wisnu
  */
 public class Login extends RootController {
+
+    private Validator validator = new Validator();
 
     /**
      * Creates new form Login
@@ -131,7 +126,7 @@ public class Login extends RootController {
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -142,12 +137,17 @@ public class Login extends RootController {
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        User user = getUserController().login(tfEmail.getText(), new String(tfPassword.getPassword()));
+        String email = tfEmail.getText();
+        String password = new String(tfPassword.getPassword());
 
-        if (user == null) {
-            JOptionPane.showMessageDialog(this, "Email atau password salah!", "Login gagal", JOptionPane.WARNING_MESSAGE);
-        } else {
+        if (!validator.validateLoginData(email, password)) {
+            return;
+        }
+
+        if (getUserController().login(email, password)) {
             openFrame("beranda");
+        } else {
+            JOptionPane.showMessageDialog(this, "Email atau password salah!", "Login gagal", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
