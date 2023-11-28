@@ -35,13 +35,13 @@ public class App {
                 UserController userController = new UserController();
                 PostController postController = new PostController();
 
-                userController.addUser("/kelompok_empat/resources/profile_placeholder.jpg", "Wisnu", "wisnu.agung.001@gmail.com", "081217610185", "123456");
-                userController.addUser("/kelompok_empat/resources/profile_placeholder.jpg", "Jhiven Agnar Fuad", "", "081217610185", "");
+                userController.addUser("/kelompok_empat/resources/profile_placeholder.jpg", "Wisnu", "wisnu.agung.001@gmail.com", "081217610185", "12345678");
+                userController.addUser("/kelompok_empat/resources/profile_placeholder.jpg", "Jhiven Agnar Fuad", "jhiven@gmail.com", "081217610185", "87654321");
 
                 postController.tambahPost(userController.getCurrentUser(), "Bolpen ilang!", "Pilot", "PENS HH101", "bolpen.jpg", "", "Lost");
                 postController.tambahPost(userController.getCurrentUser(), "HP ilang", "iPhone", "Starbuck", "iphone.png", "", "Lost");
                 postController.tambahPost(userController.getCurrentUser(), "Koceng oren", "Elmo", "Keputih", "kucing.jpg", "", "Lost");
-                postController.tambahPost(userController.getCurrentUser(), "Kunci rumah", "Kunci", "PENS", "kunci.jpg", "", "Lost");
+                postController.tambahPost(userController.getCurrentUser(), "Kunci rumah", "Kunci", "PENS", "kunci.jpg", "", "Found");
 
                 userController.logout();
 

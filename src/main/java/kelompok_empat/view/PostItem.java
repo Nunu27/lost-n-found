@@ -4,8 +4,9 @@
  */
 package kelompok_empat.view;
 
+import java.awt.Color;
 import javax.swing.ImageIcon;
-import kelompok_empat.component.ImageResizer;
+import kelompok_empat.helper.ImageResizer;
 import kelompok_empat.entity.Post;
 
 /**
@@ -13,14 +14,14 @@ import kelompok_empat.entity.Post;
  * @author wisnu
  */
 public class PostItem extends javax.swing.JPanel {
-
+    
     private NavbarLayout navbarLayout;
     private Post post;
-
+    
     public PostItem(NavbarLayout navbarLayout, Post post) {
         this.navbarLayout = navbarLayout;
         this.post = post;
-
+        
         initComponents();
         updateData();
     }
@@ -34,12 +35,14 @@ public class PostItem extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblFoto = new javax.swing.JLabel();
         lblJudul = new javax.swing.JLabel();
         lblNama = new javax.swing.JLabel();
         lblLokasi = new javax.swing.JLabel();
         lblAuthor = new javax.swing.JLabel();
         lblTimestamp = new javax.swing.JLabel();
+        coverContainer = new javax.swing.JPanel();
+        lblKategori = new javax.swing.JLabel();
+        lblFoto = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(241, 241, 241));
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -50,9 +53,6 @@ public class PostItem extends javax.swing.JPanel {
                 formMouseClicked(evt);
             }
         });
-
-        lblFoto.setText("Foto");
-        lblFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         lblJudul.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblJudul.setText("Judul");
@@ -70,19 +70,33 @@ public class PostItem extends javax.swing.JPanel {
         lblTimestamp.setText("5 menit yang lalu");
         lblTimestamp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        coverContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblKategori.setBackground(new java.awt.Color(255, 51, 51));
+        lblKategori.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        lblKategori.setForeground(new java.awt.Color(255, 255, 255));
+        lblKategori.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblKategori.setText("Kategori");
+        lblKategori.setOpaque(true);
+        coverContainer.add(lblKategori, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 74, 50, 20));
+
+        lblFoto.setText("Foto");
+        lblFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        coverContainer.add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 92, 92));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(coverContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblJudul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblAuthor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblTimestamp))
                     .addComponent(lblNama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblLokasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -90,20 +104,21 @@ public class PostItem extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 8, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblJudul)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNama)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblLokasi)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblAuthor)
-                            .addComponent(lblTimestamp)))
-                    .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblJudul)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblNama)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblLokasi)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAuthor)
+                    .addComponent(lblTimestamp))
+                .addGap(14, 14, 14))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(coverContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -111,14 +126,21 @@ public class PostItem extends javax.swing.JPanel {
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         navbarLayout.viewPost(post);
     }//GEN-LAST:event_formMouseClicked
-
+    
     private void updateData() {
         if (post.getPathFoto().isBlank()) {
             lblFoto.setIcon(null);
         } else {
             lblFoto.setIcon(new ImageIcon(new ImageResizer(post.getPathFoto()).resize(92, 92)));
         }
-
+        
+        lblKategori.setText(post.getKategori());
+        if (post.getKategori().equals("Lost")) {
+            lblKategori.setBackground(Color.red);
+        } else {
+            lblKategori.setBackground(Color.green);
+        }
+        
         lblJudul.setText(post.getJudul());
         lblNama.setText(post.getNamaBarang());
         lblLokasi.setText(post.getAlamat());
@@ -127,9 +149,11 @@ public class PostItem extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel coverContainer;
     private javax.swing.JLabel lblAuthor;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JLabel lblJudul;
+    private javax.swing.JLabel lblKategori;
     private javax.swing.JLabel lblLokasi;
     private javax.swing.JLabel lblNama;
     private javax.swing.JLabel lblTimestamp;

@@ -44,20 +44,20 @@ public class UserController {
         return true;
     }
 
-    public void removeUser(User user) {
-        userList.remove(user);
+    public void removeUser() {
+        userList.remove(currentUser);
+        currentUser = null;
     }
 
-    public User login(String email, String password) {
+    public boolean login(String email, String password) {
         for (User user : userList) {
             if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
                 currentUser = user;
-//                user.bukaKontak();
-                return user;
+                return true;
             }
         }
 
-        return null;
+        return false;
     }
     
     public void logout(){

@@ -4,6 +4,7 @@
  */
 package kelompok_empat.component;
 
+import kelompok_empat.helper.ImageResizer;
 import java.awt.Graphics2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
@@ -17,7 +18,7 @@ public class AvatarImage extends javax.swing.JPanel {
 
     private String imagePath;
     private int width = 94;
-    private int height = 94; 
+    private int height = 94;
 
     /**
      * Creates new form AvatarImage
@@ -43,10 +44,14 @@ public class AvatarImage extends javax.swing.JPanel {
     }
 
     private void updateImage() {
-        lblFoto.setIcon(getImage(new ImageIcon(new ImageResizer(imagePath).resize(this.width, this.height))));
+        if (imagePath.isBlank()) {
+            lblFoto.setIcon(null);
+        } else {
+            lblFoto.setIcon(getImage(new ImageIcon(new ImageResizer(imagePath).resize(this.width, this.height))));
+        }
     }
-    
-    public void setSize(int width, int height){
+
+    public void setSize(int width, int height) {
         this.width = width;
         this.height = height;
     }

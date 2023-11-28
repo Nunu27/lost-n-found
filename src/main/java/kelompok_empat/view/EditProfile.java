@@ -5,31 +5,36 @@
 package kelompok_empat.view;
 
 import kelompok_empat.entity.User;
+import kelompok_empat.helper.Validator;
 
 /**
  *
  * @author Jhiven Agnar
  */
-public class EditProfile extends javax.swing.JPanel {
+public class EditProfile extends javax.swing.JPanel implements DataConsumer {
 
+    private Validator validator = new Validator();
     private NavbarLayout navbarLayout;
 
     /**
      * Creates new form EditProfilePanel
+     *
+     * @param navbarLayout
      */
     public EditProfile(NavbarLayout navbarLayout) {
         this.navbarLayout = navbarLayout;
         initComponents();
+
         fotoProfile.setSize(200, 200);
-        setUser();
     }
 
-    public void setUser() {
+    @Override
+    public void updateData() {
         User user = navbarLayout.getUserController().getCurrentUser();
 
         tfEmail.setText(user.getEmail());
-        tfUsername.setText(user.getNama());
-        tfNoWa.setText(user.getNoWa());
+        tfNama.setText(user.getNama());
+        tfWa.setText(user.getNoWa());
         tfPassword.setText(user.getPassword());
         fotoProfile.setImage(user.getFotoProfil());
     }
@@ -43,25 +48,31 @@ public class EditProfile extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        fotoProfile = new kelompok_empat.component.AvatarImage();
-        lblUsername = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
+        lblNama = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
-        tfPassword = new javax.swing.JTextField();
+        tfNama = new javax.swing.JTextField();
         tfEmail = new javax.swing.JTextField();
-        tfUsername = new javax.swing.JTextField();
         btnKembali = new javax.swing.JButton();
         btnSimpan = new javax.swing.JButton();
         lblPassword1 = new javax.swing.JLabel();
-        tfNoWa = new javax.swing.JTextField();
-        imageUpload1 = new kelompok_empat.component.ImageUpload();
-
-        lblUsername.setText("Username");
+        tfWa = new javax.swing.JTextField();
+        imageContainer = new javax.swing.JPanel();
+        imgUpload = new kelompok_empat.component.ImageUpload();
+        fotoProfile = new kelompok_empat.component.AvatarImage();
+        lblTitle = new javax.swing.JLabel();
+        tfPassword = new javax.swing.JPasswordField();
 
         lblEmail.setText("Email");
 
+        lblNama.setText("Nama");
+
         lblPassword.setText("Password");
 
+        tfEmail.setEditable(false);
+        tfEmail.setEnabled(false);
+
+        btnKembali.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnKembali.setText("Kembali");
         btnKembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,72 +80,100 @@ public class EditProfile extends javax.swing.JPanel {
             }
         });
 
+        btnSimpan.setBackground(new java.awt.Color(255, 151, 22));
+        btnSimpan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
         btnSimpan.setText("Simpan");
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanActionPerformed(evt);
+            }
+        });
 
         lblPassword1.setText("No WA");
+
+        imageContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        imgUpload.setPlaceholder("/kelompok_empat/resources/profile_placeholder.jpg");
+        imgUpload.setAvatarImage(fotoProfile);
+        imageContainer.add(imgUpload, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, -1, -1));
+        imageContainer.add(fotoProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 200));
+
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblTitle.setText("Edit Profile");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(fotoProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(imageUpload1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnKembali)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSimpan))
-                    .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblUsername)
-                            .addComponent(lblEmail)
-                            .addComponent(lblPassword))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfUsername)
-                            .addComponent(tfEmail)
-                            .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTitle)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(imageContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tfEmail))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                                            .addComponent(tfNama)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(lblEmail)
+                                                    .addComponent(lblNama)
+                                                    .addComponent(lblPassword1))
+                                                .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(lblPassword)
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblPassword1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tfNoWa, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(242, 242, 242)
+                        .addComponent(tfWa)))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lblTitle)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(fotoProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblUsername)
-                            .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblEmail)
-                            .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPassword)
-                            .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPassword1)
-                            .addComponent(tfNoWa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(imageUpload1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnSimpan)
-                                .addComponent(btnKembali)))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addComponent(lblEmail)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNama)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfNama, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPassword)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPassword1))
+                    .addComponent(imageContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(tfWa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -142,19 +181,40 @@ public class EditProfile extends javax.swing.JPanel {
         navbarLayout.switchPage("profile");
     }//GEN-LAST:event_btnKembaliActionPerformed
 
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        User user = navbarLayout.getUserController().getCurrentUser();
+
+        String fotoProfil = imgUpload.getImagePath();
+        String email = tfEmail.getText();
+        String nama = tfNama.getText();
+        String noWa = tfWa.getText();
+        String password = new String(tfPassword.getPassword());
+
+        if (validator.validateUserData(nama, email, noWa, password)) {
+            user.setFotoProfil(fotoProfil);
+            user.setNama(nama);
+            user.setNoWa(noWa);
+            user.setPassword(password);
+
+            navbarLayout.switchPage("profile");
+        }
+    }//GEN-LAST:event_btnSimpanActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnSimpan;
     private kelompok_empat.component.AvatarImage fotoProfile;
-    private kelompok_empat.component.ImageUpload imageUpload1;
+    private javax.swing.JPanel imageContainer;
+    private kelompok_empat.component.ImageUpload imgUpload;
     private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblNama;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblPassword1;
-    private javax.swing.JLabel lblUsername;
+    private javax.swing.JLabel lblTitle;
     private javax.swing.JTextField tfEmail;
-    private javax.swing.JTextField tfNoWa;
-    private javax.swing.JTextField tfPassword;
-    private javax.swing.JTextField tfUsername;
+    private javax.swing.JTextField tfNama;
+    private javax.swing.JPasswordField tfPassword;
+    private javax.swing.JTextField tfWa;
     // End of variables declaration//GEN-END:variables
 }

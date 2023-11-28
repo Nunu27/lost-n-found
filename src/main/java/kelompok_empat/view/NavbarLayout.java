@@ -6,8 +6,9 @@ package kelompok_empat.view;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import kelompok_empat.controller.RootController;
-import kelompok_empat.component.ImageResizer;
+import kelompok_empat.helper.ImageResizer;
 import kelompok_empat.entity.Post;
 
 /**
@@ -43,14 +44,28 @@ public class NavbarLayout extends RootController {
         pnlContent.add(myPost, "myPost");
         pnlContent.add(profile, "profile");
         pnlContent.add(editProfile, "editProfile");
-        
-        beranda.filterPost();
-            
+
+        switchPage("beranda");
+    }
+
+    public Component getCurrentPage() {
+        for (Component component : pnlContent.getComponents()) {
+            if (component.isVisible()) {
+                return component;
+            }
+        }
+        return null;
     }
 
     public void switchPage(String page) {
+
         CardLayout layout = (CardLayout) pnlContent.getLayout();
         layout.show(pnlContent, page);
+        Component component = getCurrentPage();
+
+        if (component instanceof DataConsumer useData) {
+            useData.updateData();
+        }
 
         setButtonColor(currentPage, Color.decode("#FF9717"));
         setButtonColor(page, Color.decode("#E27D00"));
