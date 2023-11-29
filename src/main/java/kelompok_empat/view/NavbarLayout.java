@@ -40,6 +40,7 @@ public class NavbarLayout extends RootController {
         EditProfile editProfile = new EditProfile(this);
         MyPost myPost = new MyPost();
         
+        
         pnlContent.add(beranda, "beranda");
         pnlContent.add(myPost, "myPost");
         pnlContent.add(profile, "profile");
