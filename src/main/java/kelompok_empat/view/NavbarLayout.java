@@ -6,8 +6,9 @@ package kelompok_empat.view;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import kelompok_empat.controller.RootController;
-import kelompok_empat.component.ImageResizer;
+import kelompok_empat.helper.ImageResizer;
 import kelompok_empat.entity.Post;
 
 /**
@@ -37,19 +38,35 @@ public class NavbarLayout extends RootController {
         Beranda beranda = new Beranda(this);
         Profile profile = new Profile(this);
         EditProfile editProfile = new EditProfile(this);
+        MyPost myPost = new MyPost();
         
         
         pnlContent.add(beranda, "beranda");
+        pnlContent.add(myPost, "myPost");
         pnlContent.add(profile, "profile");
         pnlContent.add(editProfile, "editProfile");
-        
-        beranda.filterPost();
-            
+
+        switchPage("beranda");
+    }
+
+    public Component getCurrentPage() {
+        for (Component component : pnlContent.getComponents()) {
+            if (component.isVisible()) {
+                return component;
+            }
+        }
+        return null;
     }
 
     public void switchPage(String page) {
+
         CardLayout layout = (CardLayout) pnlContent.getLayout();
         layout.show(pnlContent, page);
+        Component component = getCurrentPage();
+
+        if (component instanceof DataConsumer useData) {
+            useData.updateData();
+        }
 
         setButtonColor(currentPage, Color.decode("#FF9717"));
         setButtonColor(page, Color.decode("#E27D00"));
@@ -65,13 +82,15 @@ public class NavbarLayout extends RootController {
             case "profile", "editProfile" -> {
                 btnProfile.setBackground(color);
             }
+            case "myPost" -> {
+                btnPostinganSaya.setBackground(color);
+            }
         }
     }
 
     public void viewPost(Post post) {
         System.out.println("hai " + post.getJudul());
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -223,7 +242,7 @@ public class NavbarLayout extends RootController {
     }//GEN-LAST:event_btnProfileActionPerformed
 
     private void btnPostinganSayaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostinganSayaActionPerformed
-        // TODO add your handling code here:
+        switchPage("myPost");
     }//GEN-LAST:event_btnPostinganSayaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
