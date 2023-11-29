@@ -34,27 +34,33 @@ public class UserController {
         return false;
     }
 
-    public boolean addUser(String nama, String email, String noWa, String password) {
+    public boolean addUser(String fotoProfil, String nama, String email, String noWa, String password) {
         if (checkUser(email)) {
             return false;
         }
 
-        userList.add(new User(nama, email, password, noWa));
+        currentUser = new User(fotoProfil, nama, email, password, noWa);
+        userList.add(currentUser);
         return true;
     }
 
-    public void removeUser(User user) {
-        userList.remove(user);
+    public void removeUser() {
+        userList.remove(currentUser);
+        currentUser = null;
     }
 
-    public User login(String email, String password) {
+    public boolean login(String email, String password) {
         for (User user : userList) {
             if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
                 currentUser = user;
-                return user;
+                return true;
             }
         }
 
-        return null;
+        return false;
+    }
+    
+    public void logout(){
+        this.currentUser = null;
     }
 }

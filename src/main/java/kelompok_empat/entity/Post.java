@@ -4,13 +4,15 @@
  */
 package kelompok_empat.entity;
 
-import java.time.LocalDate;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 /**
  *
  * @author Jhiven Agnar
  */
 public class Post {
+
     private String judul;
     private String namaBarang;
     private String pathFoto;
@@ -18,10 +20,10 @@ public class Post {
     private String alamat;
     private String kategori;
     private boolean telahDitemukan;
-    private LocalDate tanggalPost;
+    private LocalDateTime tanggalPost;
     private User dipostingOleh;
-    
-    public Post(User dipostingOleh, String namaBarang, String alamat, String judul, String kategori){
+
+    public Post(User dipostingOleh, String namaBarang, String alamat, String judul, String kategori) {
         this.judul = judul;
         this.namaBarang = namaBarang;
         this.pathFoto = "";
@@ -29,7 +31,7 @@ public class Post {
         this.alamat = alamat;
         this.kategori = kategori;
         this.telahDitemukan = false;
-        this.tanggalPost = LocalDate.now();
+        this.tanggalPost = LocalDateTime.now();
         this.dipostingOleh = dipostingOleh;
     }
 
@@ -64,7 +66,7 @@ public class Post {
     public String getKategori() {
         return kategori;
     }
-    
+
     public String getJudul() {
         return judul;
     }
@@ -74,7 +76,8 @@ public class Post {
     }
 
     public String getPathFoto() {
-        return pathFoto;
+        if(pathFoto == null) return null;
+        return "/kelompok_empat/resources/posts/" + pathFoto;
     }
 
     public String getDeskripsi() {
@@ -92,6 +95,26 @@ public class Post {
     public User getDipostingOleh() {
         return dipostingOleh;
     }
-    
-    
+
+    public String getRelativeTime() {
+        LocalDateTime current = LocalDateTime.now();
+
+        Duration duration = Duration.between(tanggalPost, current);
+        long seconds = duration.getSeconds();
+
+        if (seconds == 0) {
+            return "baru saja";
+        } else if (seconds < 60) {
+            return seconds + " detik yang lalu";
+        } else if (seconds < 3600) {
+            long minutes = seconds / 60;
+            return minutes + " menit yang lalu";
+        } else if (seconds < 86400) {
+            long hours = seconds / 3600;
+            return hours + " jam yang lalu";
+        } else {
+            long days = seconds / 86400;
+            return days + " hari yang lalu";
+        }
+    }
 }
