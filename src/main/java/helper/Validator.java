@@ -20,7 +20,7 @@ public class Validator {
     }
 
     public boolean checkPhone(String phone) {
-        return patternMatches(phone, "^\\d{12,}$");
+        return patternMatches(phone, "^\\d{12,13}$");
     }
 
     public boolean checkEmail(String email) {
@@ -49,12 +49,10 @@ public class Validator {
         String message = "";
         if (nama.isBlank() || email.isBlank() || noWa.isBlank() || password.isBlank()) {
             message = "Harap isi semua data";
-        } else if (!checkEmail(email)) {
-            message = "Harap masukkan email yang valid";
+        } else if (!validateLoginData(email, password)) {
+            return false;
         } else if (!checkPhone(noWa)) {
             message = "Harap masukkan nomor yang valid";
-        } else if (password.length() < 8) {
-            message = "Password minimal 8 karakter";
         }
 
         if (message.isBlank()) {

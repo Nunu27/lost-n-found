@@ -4,7 +4,7 @@
  */
 package views;
 
-import java.awt.GridLayout;
+import component.WrapLayout;
 
 /**
  *
@@ -17,7 +17,6 @@ public class MyPost extends javax.swing.JPanel {
      */
     public MyPost() {
         initComponents();
-        setupGridLayout();
     }
 
     /**
@@ -37,6 +36,8 @@ public class MyPost extends javax.swing.JPanel {
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
+        panelContainer.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout panelContainerLayout = new javax.swing.GroupLayout(panelContainer);
         panelContainer.setLayout(panelContainerLayout);
         panelContainerLayout.setHorizontalGroup(
@@ -48,8 +49,9 @@ public class MyPost extends javax.swing.JPanel {
             .addGap(0, 310, Short.MAX_VALUE)
         );
 
+        panelContainer.setLayout(new WrapLayout());
+
         jScrollPane1.setViewportView(panelContainer);
-        jScrollPane1.getViewport().setPreferredSize(panelContainer.getPreferredSize());
 
         cbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua", "Lost", "Found" }));
 
@@ -60,37 +62,32 @@ public class MyPost extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tfKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbKategori, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(6, 6, 6)
+                .addComponent(tfKeyword)
+                .addGap(6, 6, 6)
+                .addComponent(cbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
                 .addComponent(btnCari, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(6, 6, 6))
             .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(7, 7, 7)
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tfKeyword)
                     .addComponent(cbKategori)
                     .addComponent(btnCari, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane1))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void setupGridLayout() {
-        GridLayout panelContainerLayout = new GridLayout(0, 3, 10, 10); // 0 baris (tak terbatas), 3 kolom, jarak horizontal 10, jarak vertikal 10
-        panelContainer.setLayout(panelContainerLayout);
-    }
-    
-    public void tambahMyPost(){
+    public void tambahMyPost() {
         MyPostItem panelPostingan = new MyPostItem();
         panelContainer.add(panelPostingan);
-	panelContainer.revalidate();
+        panelContainer.revalidate();
         panelContainer.repaint();
     }
 

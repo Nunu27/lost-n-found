@@ -15,7 +15,6 @@ public class MyPostTest {
     MyPost panel = new MyPost();    
     
     private void initialize(){
-        
         for(int i = 1; i <= 10; i++){
             panel.tambahMyPost();
         }        

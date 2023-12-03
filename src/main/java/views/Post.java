@@ -46,7 +46,7 @@ public class Post extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("REPORT ");
+        jLabel1.setText("Buat Post");
 
         jLabel2.setText("Nama barang");
 

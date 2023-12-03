@@ -35,7 +35,7 @@ public class NotFound extends javax.swing.JPanel {
         setLayout(new java.awt.GridBagLayout());
 
         lblTidakDitemukan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTidakDitemukan.setText("Yahh.. perncarianmu ngga ada ");
+        lblTidakDitemukan.setText("Yahh.. pencarianmu ngga ada ");
 
         lblGantiPencarian.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblGantiPencarian.setText("Coba pake keyword lain");

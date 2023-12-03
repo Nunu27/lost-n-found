@@ -8,7 +8,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import controller.RootController;
-import helper.ImageResizer;
+import helper.ImageManipulator;
 import entity.Post;
 
 /**
@@ -122,7 +122,7 @@ public class NavbarLayout extends RootController {
         btnBeranda.setBackground(new java.awt.Color(255, 151, 22));
         btnBeranda.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnBeranda.setForeground(new java.awt.Color(255, 255, 255));
-        btnBeranda.setIcon(new javax.swing.ImageIcon(new ImageResizer("/kelompok_empat/resources/icons/beranda.png").resize(24, 24)));
+        btnBeranda.setIcon(new javax.swing.ImageIcon(new helper.ImageManipulator("/kelompok_empat/resources/icons/beranda.png").resize(24, 24).getImage()));
         btnBeranda.setText("Beranda");
         btnBeranda.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 15, 4, 4));
         btnBeranda.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -138,7 +138,7 @@ public class NavbarLayout extends RootController {
         btnLogout.setBackground(new java.awt.Color(255, 151, 22));
         btnLogout.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnLogout.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogout.setIcon(new javax.swing.ImageIcon(new ImageResizer("/kelompok_empat/resources/icons/logout.png").resize(24, 24)));
+        btnLogout.setIcon(new javax.swing.ImageIcon(new helper.ImageManipulator("/kelompok_empat/resources/icons/logout.png").resize(24, 24).getImage()));
         btnLogout.setText("Logout");
         btnLogout.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 15, 4, 4));
         btnLogout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -154,7 +154,7 @@ public class NavbarLayout extends RootController {
         btnProfile.setBackground(new java.awt.Color(255, 151, 22));
         btnProfile.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnProfile.setForeground(new java.awt.Color(255, 255, 255));
-        btnProfile.setIcon(new javax.swing.ImageIcon(new ImageResizer("/kelompok_empat/resources/icons/profile.png").resize(24, 24)));
+        btnProfile.setIcon(new javax.swing.ImageIcon(new helper.ImageManipulator("/kelompok_empat/resources/icons/profile.png").resize(24, 24).getImage()));
         btnProfile.setText("Profile");
         btnProfile.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 15, 4, 4));
         btnProfile.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -170,7 +170,7 @@ public class NavbarLayout extends RootController {
         btnPostinganSaya.setBackground(new java.awt.Color(255, 151, 22));
         btnPostinganSaya.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnPostinganSaya.setForeground(new java.awt.Color(255, 255, 255));
-        btnPostinganSaya.setIcon(new javax.swing.ImageIcon(new ImageResizer("/kelompok_empat/resources/icons/post.png").resize(24, 24)));
+        btnPostinganSaya.setIcon(new javax.swing.ImageIcon(new helper.ImageManipulator("/kelompok_empat/resources/icons/post.png").resize(24, 24).getImage()));
         btnPostinganSaya.setText("Postingan Saya");
         btnPostinganSaya.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 15, 4, 4));
         btnPostinganSaya.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);

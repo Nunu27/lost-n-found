@@ -6,7 +6,7 @@ package views;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
-import helper.ImageResizer;
+import helper.ImageManipulator;
 import entity.Post;
 
 /**
@@ -14,14 +14,14 @@ import entity.Post;
  * @author wisnu
  */
 public class PostItem extends javax.swing.JPanel {
-    
+
     private NavbarLayout navbarLayout;
     private Post post;
-    
+
     public PostItem(NavbarLayout navbarLayout, Post post) {
         this.navbarLayout = navbarLayout;
         this.post = post;
-        
+
         initComponents();
         updateData();
     }
@@ -126,21 +126,21 @@ public class PostItem extends javax.swing.JPanel {
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         navbarLayout.viewPost(post);
     }//GEN-LAST:event_formMouseClicked
-    
+
     private void updateData() {
         if (post.getPathFoto().isBlank()) {
             lblFoto.setIcon(null);
         } else {
-            lblFoto.setIcon(new ImageIcon(new ImageResizer(post.getPathFoto()).resize(92, 92)));
+            lblFoto.setIcon(new ImageIcon(new ImageManipulator(post.getPathFoto()).resize(92, 92).getImage()));
         }
-        
+
         lblKategori.setText(post.getKategori());
         if (post.getKategori().equals("Lost")) {
             lblKategori.setBackground(Color.red);
         } else {
             lblKategori.setBackground(Color.green);
         }
-        
+
         lblJudul.setText(post.getJudul());
         lblNama.setText(post.getNamaBarang());
         lblLokasi.setText(post.getAlamat());

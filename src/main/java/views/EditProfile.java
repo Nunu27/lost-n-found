@@ -37,6 +37,7 @@ public class EditProfile extends javax.swing.JPanel implements DataConsumer {
         tfWa.setText(user.getNoWa());
         tfPassword.setText(user.getPassword());
         fotoProfile.setImage(user.getFotoProfil());
+        imgUpload.setPlaceholder(user.getFotoProfil());
     }
 
     /**
@@ -73,6 +74,7 @@ public class EditProfile extends javax.swing.JPanel implements DataConsumer {
         tfEmail.setEnabled(false);
 
         btnKembali.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnKembali.setForeground(new java.awt.Color(51, 51, 51));
         btnKembali.setText("Kembali");
         btnKembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

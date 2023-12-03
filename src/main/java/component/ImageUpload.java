@@ -4,7 +4,7 @@
  */
 package component;
 
-import helper.ImageResizer;
+import helper.ImageManipulator;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -64,7 +64,7 @@ public class ImageUpload extends javax.swing.JPanel {
 
         btnUpload.setBackground(new java.awt.Color(255, 151, 23));
         btnUpload.setForeground(new java.awt.Color(255, 255, 255));
-        btnUpload.setIcon(new javax.swing.ImageIcon(new ImageResizer("/kelompok_empat/resources/icons/upload.png").resize(24, 24)));
+        btnUpload.setIcon(new javax.swing.ImageIcon(new helper.ImageManipulator("/kelompok_empat/resources/icons/upload.png").resize(24, 24).getImage()));
         btnUpload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUploadActionPerformed(evt);

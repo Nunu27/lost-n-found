@@ -76,6 +76,7 @@ public class Profile extends javax.swing.JPanel implements DataConsumer {
         lblTitle.setText("Profile");
 
         btnEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEdit.setForeground(new java.awt.Color(51, 51, 51));
         btnEdit.setText("Edit Profile");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

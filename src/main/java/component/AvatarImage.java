@@ -4,10 +4,7 @@
  */
 package component;
 
-import helper.ImageResizer;
-import java.awt.Graphics2D;
-import java.awt.geom.RoundRectangle2D;
-import java.awt.image.BufferedImage;
+import helper.ImageManipulator;
 import javax.swing.ImageIcon;
 
 /**
@@ -32,22 +29,19 @@ public class AvatarImage extends javax.swing.JPanel {
         updateImage();
     }
 
-    public ImageIcon getImage(ImageIcon originalIcon) {
-        BufferedImage image = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2d = image.createGraphics();
-        RoundRectangle2D roundedRectangle = new RoundRectangle2D.Float(0, 0, this.width, this.height, this.width, this.height);
-        g2d.setClip(roundedRectangle);
-        originalIcon.paintIcon(null, g2d, 0, 0);
-        g2d.dispose();
+    public ImageIcon getImage() {
+        ImageManipulator manipulator = new ImageManipulator(imagePath);
+        manipulator.resize(this.width, this.height);
+        manipulator.setRoundedCorner(this.height);
 
-        return new ImageIcon(image);
+        return new ImageIcon(manipulator.getImage());
     }
 
     private void updateImage() {
         if (imagePath.isBlank()) {
             lblFoto.setIcon(null);
         } else {
-            lblFoto.setIcon(getImage(new ImageIcon(new ImageResizer(imagePath).resize(this.width, this.height))));
+            lblFoto.setIcon(getImage());
         }
     }
 
