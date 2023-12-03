@@ -20,12 +20,16 @@ import javax.imageio.ImageIO;
 public class ImageManipulator {
 
     private BufferedImage image;
-
+    private int width;
+    private int height;
+    
     public ImageManipulator(String path) {
         path = path.startsWith("/") ? getClass().getResource(path).getPath() : path;
 
         try {
             image = ImageIO.read(new File(path));
+            height = image.getHeight();
+            width = image.getWidth();
         } catch (IOException ex) {
             Logger.getLogger(ImageManipulator.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -39,6 +43,9 @@ public class ImageManipulator {
         double oldRatio = (double) image.getWidth() / image.getHeight();
         double newRatio = (double) width / height;
 
+        this.width = width;
+        this.height = height;
+
         if (oldRatio > newRatio) {
             width = (int) (height * oldRatio);
         } else {
@@ -47,7 +54,7 @@ public class ImageManipulator {
 
         BufferedImage resizedImage = new BufferedImage(width, height, image.getType());
         Graphics2D g2d = resizedImage.createGraphics();
-        
+
         g2d.drawImage(image.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH), 0, 0, null);
         g2d.dispose();
         image = resizedImage;
@@ -56,9 +63,6 @@ public class ImageManipulator {
     }
 
     public ImageManipulator setRoundedCorner(int cornerRadius) {
-        int width = image.getWidth();
-        int height = image.getHeight();
-
         BufferedImage roundedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = roundedImage.createGraphics();
 

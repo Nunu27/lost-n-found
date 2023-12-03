@@ -41,7 +41,6 @@ public class NotFound extends javax.swing.JPanel {
         lblGantiPencarian.setText("Coba pake keyword lain");
 
         fotoTidakDitemukan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kelompok_empat/resources/not_found.png"))); // NOI18N
-        fotoTidakDitemukan.setText(".");
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);

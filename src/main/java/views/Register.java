@@ -108,7 +108,7 @@ public class Register extends RootController {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        imgUpload.setPlaceholder("/kelompok_empat/resources/profile_placeholder.jpg");
+        imgUpload.setPlaceholder("/resources/profile_placeholder.jpg");
         imgUpload.setAvatarImage(avatarImg);
         jPanel1.add(imgUpload, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
         jPanel1.add(avatarImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 100));
@@ -126,10 +126,8 @@ public class Register extends RootController {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(10, 10, 10))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tfWa, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(tfPassword, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(tfEmail, javax.swing.GroupLayout.Alignment.TRAILING)
