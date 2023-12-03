@@ -4,7 +4,10 @@
  */
 package views;
 
-import java.awt.FlowLayout;
+import entity.Post;
+import helper.ImageManipulator;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -12,11 +15,15 @@ import java.awt.FlowLayout;
  */
 public class MyPostItem extends javax.swing.JPanel {
 
-    /**
-     * Creates new form MyPost
-     */
-    public MyPostItem() {
+    private NavbarLayout navbarLayout;
+    private Post post;
+
+    public MyPostItem(NavbarLayout navbarLayout, Post post) {
         initComponents();
+        
+        this.navbarLayout = navbarLayout;
+        this.post = post;
+        updateData();
     }
 
     /**
@@ -28,68 +35,96 @@ public class MyPostItem extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelFoto = new javax.swing.JLabel();
-        labelJudul = new javax.swing.JLabel();
-        labelNamaBarang = new javax.swing.JLabel();
-        labelKategori = new javax.swing.JLabel();
-        labelTanggal = new javax.swing.JLabel();
+        lblFoto = new javax.swing.JLabel();
+        lblJudul = new javax.swing.JLabel();
+        lblNamaBarang = new javax.swing.JLabel();
+        lblKategori = new javax.swing.JLabel();
+        lblTanggal = new javax.swing.JLabel();
 
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 200, 200), 1, true));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
-        labelFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelFoto.setText("FOTO");
+        lblFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        labelJudul.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelJudul.setText("Ini Bagian Judul");
+        lblJudul.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblJudul.setText("Ini Bagian Judul");
 
-        labelNamaBarang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelNamaBarang.setText("Ini Bagian Nama Barang");
+        lblNamaBarang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblNamaBarang.setText("Ini Bagian Nama Barang");
 
-        labelKategori.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelKategori.setText("Ini Kategori");
+        lblKategori.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblKategori.setText("Ini Kategori");
 
-        labelTanggal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelTanggal.setText("Ini Tanggal");
+        lblTanggal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblTanggal.setText("Ini Tanggal");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelJudul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelNamaBarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addComponent(labelFoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblJudul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblNamaBarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addComponent(lblFoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(labelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelJudul)
+                .addComponent(lblJudul)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelNamaBarang)
+                .addComponent(lblNamaBarang)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelKategori)
-                    .addComponent(labelTanggal))
+                    .addComponent(lblKategori)
+                    .addComponent(lblTanggal))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        navbarLayout.viewPost(post);
+    }//GEN-LAST:event_formMouseClicked
+
+     private void updateData() {
+        if (post.getPathFoto().isBlank()) {
+            lblFoto.setIcon(null);
+        } else {
+            lblFoto.setIcon(new ImageIcon(new ImageManipulator(post.getPathFoto()).resize(200, 200).getImage()));
+        }
+
+        lblKategori.setText(post.getKategori());
+        if (post.getKategori().equals("Lost")) {
+            lblKategori.setBackground(Color.red);
+        } else {
+            lblKategori.setBackground(Color.green);
+        }
+
+        lblJudul.setText(post.getJudul());
+        lblNamaBarang.setText(post.getNamaBarang());
+        lblTanggal.setText(post.getRelativeTime());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel labelFoto;
-    private javax.swing.JLabel labelJudul;
-    private javax.swing.JLabel labelKategori;
-    private javax.swing.JLabel labelNamaBarang;
-    private javax.swing.JLabel labelTanggal;
+    private javax.swing.JLabel lblFoto;
+    private javax.swing.JLabel lblJudul;
+    private javax.swing.JLabel lblKategori;
+    private javax.swing.JLabel lblNamaBarang;
+    private javax.swing.JLabel lblTanggal;
     // End of variables declaration//GEN-END:variables
 }

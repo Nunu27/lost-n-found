@@ -63,6 +63,10 @@ public class Post {
         this.kategori = kategori;
     }
 
+    public LocalDateTime getTanggalPost() {
+        return tanggalPost;
+    }
+
     public String getKategori() {
         return kategori;
     }
@@ -76,8 +80,7 @@ public class Post {
     }
 
     public String getPathFoto() {
-        if(pathFoto == null) return null;
-        return "/kelompok_empat/resources/posts/" + pathFoto;
+        return pathFoto;
     }
 
     public String getDeskripsi() {

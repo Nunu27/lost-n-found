@@ -35,6 +35,22 @@ public class PostController {
 
         return hasilCari;
     }
+    
+    public ArrayList<Post> cariPost(String text, String kategori, User user) {
+        text = text.toLowerCase();
+        ArrayList<Post> hasilCari = new ArrayList<>();
+
+        for (Post post : listPost) {
+            boolean keyword = text.isBlank() ? true : post.getJudul().toLowerCase().contains(text) || post.getNamaBarang().toLowerCase().contains(text);
+            boolean checkKategori = kategori.equals("Semua") || post.getKategori().equals(kategori);
+
+            if (keyword && checkKategori && user == post.getDipostingOleh()) {
+                hasilCari.add(post);
+            }
+        }
+
+        return hasilCari;
+    }
 
     public ArrayList<Post> cariPost(User user) {
 
@@ -65,5 +81,6 @@ public class PostController {
         }
 
         this.listPost.add(post);
+        System.out.println("path foto : " + post.getPathFoto() + ", deskripsi : " + post.getDeskripsi());
     }
 }

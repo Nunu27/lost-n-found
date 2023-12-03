@@ -5,18 +5,25 @@
 package views;
 
 import component.WrapLayout;
+import entity.Post;
+import entity.User;
+import java.util.ArrayList;
 
 /**
  *
  * @author hp
  */
-public class MyPost extends javax.swing.JPanel {
+public class MyPost extends javax.swing.JPanel implements DataConsumer{
+
+    private NavbarLayout navbarLayout;
 
     /**
      * Creates new form MyPost
      */
-    public MyPost() {
+    public MyPost(NavbarLayout navbarLayout) {
         initComponents();
+
+        this.navbarLayout = navbarLayout;
     }
 
     /**
@@ -33,6 +40,7 @@ public class MyPost extends javax.swing.JPanel {
         tfKeyword = new javax.swing.JTextField();
         cbKategori = new javax.swing.JComboBox<>();
         btnCari = new javax.swing.JButton();
+        btnTambahPost = new javax.swing.JButton();
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -46,7 +54,7 @@ public class MyPost extends javax.swing.JPanel {
         );
         panelContainerLayout.setVerticalGroup(
             panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 311, Short.MAX_VALUE)
         );
 
         panelContainer.setLayout(new WrapLayout());
@@ -57,6 +65,13 @@ public class MyPost extends javax.swing.JPanel {
 
         btnCari.setText("Cari");
 
+        btnTambahPost.setIcon(new javax.swing.ImageIcon(new helper.ImageManipulator("/resources/icons/plus.png").resize(35, 35).getImage()));
+        btnTambahPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTambahPostActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -64,11 +79,13 @@ public class MyPost extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(tfKeyword)
-                .addGap(6, 6, 6)
-                .addComponent(cbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(btnCari, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCari)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTambahPost, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9))
             .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
@@ -78,21 +95,45 @@ public class MyPost extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tfKeyword)
                     .addComponent(cbKategori)
-                    .addComponent(btnCari, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane1))
+                    .addComponent(btnTambahPost, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(5, 5, 5)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public void tambahMyPost() {
-        MyPostItem panelPostingan = new MyPostItem();
-        panelContainer.add(panelPostingan);
-        panelContainer.revalidate();
-        panelContainer.repaint();
+    private void btnTambahPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPostActionPerformed
+        navbarLayout.switchPage("buatPost");
+    }//GEN-LAST:event_btnTambahPostActionPerformed
+
+    public void filterPost() {
+        String keyword = tfKeyword.getText();
+        String kategori = cbKategori.getSelectedItem().toString();
+        User user = navbarLayout.getUserController().getCurrentUser();
+
+        setListContent(navbarLayout.getPostController().cariPost(keyword, kategori, user));
     }
 
+    public void setListContent(ArrayList<Post> posts) {
+        panelContainer.removeAll();
+
+        if (posts.isEmpty()) {
+            panelContainer.add(new NotFound());
+        } else {
+            for (Post post : posts) {
+                panelContainer.add(new MyPostItem(navbarLayout, post));
+            }
+        }
+
+        panelContainer.updateUI();
+    }
+
+    public void updateData(){
+        filterPost();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCari;
+    private javax.swing.JButton btnTambahPost;
     private javax.swing.JComboBox<String> cbKategori;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelContainer;

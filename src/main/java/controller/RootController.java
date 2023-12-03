@@ -41,7 +41,7 @@ public abstract class RootController extends JFrame {
             case "register" -> {
                 return new Register();
             }
-            case "beranda", "profil", "detail_post" -> {
+            case "beranda", "profil", "detailPost", "tambahPost", "editPost" -> {
                 return new NavbarLayout(name);
             }
 

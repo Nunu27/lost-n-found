@@ -22,10 +22,10 @@ public class ImageManipulator {
     private BufferedImage image;
     private int width;
     private int height;
-    
-    public ImageManipulator(String path) {
-        path = path.startsWith("/") ? getClass().getResource(path).getPath() : path;
 
+    public ImageManipulator(String path) {
+        path = path.startsWith("/") ? getClass().getResource(path).getPath().replaceAll("%20", " ") : path;
+        
         try {
             image = ImageIO.read(new File(path));
             height = image.getHeight();
@@ -33,6 +33,7 @@ public class ImageManipulator {
         } catch (IOException ex) {
             Logger.getLogger(ImageManipulator.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     public BufferedImage getImage() {

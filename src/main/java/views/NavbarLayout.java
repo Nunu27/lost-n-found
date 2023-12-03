@@ -30,6 +30,7 @@ public class NavbarLayout extends RootController {
 
     public NavbarLayout(String page) {
         this();
+        this.currentPage = page;
     }
 
     @Override
@@ -37,13 +38,18 @@ public class NavbarLayout extends RootController {
         Beranda beranda = new Beranda(this);
         Profile profile = new Profile(this);
         EditProfile editProfile = new EditProfile(this);
-        MyPost myPost = new MyPost();
-        
+        BuatPost buatPost = new BuatPost(this);
+        MyPost myPost = new MyPost(this);
+        DetailPost detailPost = new DetailPost(this);
+        EditPost editPost = new EditPost(this);
         
         pnlContent.add(beranda, "beranda");
         pnlContent.add(myPost, "myPost");
         pnlContent.add(profile, "profile");
         pnlContent.add(editProfile, "editProfile");
+        pnlContent.add(buatPost, "buatPost");
+        pnlContent.add(detailPost, "detailPost");
+        pnlContent.add(editPost, "editPost");
 
         switchPage("beranda");
     }
@@ -81,14 +87,16 @@ public class NavbarLayout extends RootController {
             case "profile", "editProfile" -> {
                 btnProfile.setBackground(color);
             }
-            case "myPost" -> {
+            case "myPost", "buatPost", "editPost" -> {
                 btnPostinganSaya.setBackground(color);
             }
         }
     }
 
     public void viewPost(Post post) {
-        System.out.println("hai " + post.getJudul());
+        switchPage("detailPost");
+        DetailPost detailPost = (DetailPost) getCurrentPage();
+        detailPost.setPost(post);
     }
     /**
      * This method is called from within the constructor to initialize the form.
