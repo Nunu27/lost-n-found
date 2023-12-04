@@ -14,7 +14,7 @@ import javax.swing.BoxLayout;
  *
  * @author hp
  */
-public class MyPost extends javax.swing.JPanel implements DataConsumer{
+public class MyPost extends javax.swing.JPanel implements DataConsumer {
 
     private NavbarLayout navbarLayout;
 
@@ -60,9 +60,20 @@ public class MyPost extends javax.swing.JPanel implements DataConsumer{
 
         jScrollPane1.setViewportView(panelContainer);
 
+        tfKeyword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfKeywordActionPerformed(evt);
+            }
+        });
+
         cbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua", "Lost", "Found" }));
 
         btnCari.setText("Cari");
+        btnCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariActionPerformed(evt);
+            }
+        });
 
         btnTambahPost.setIcon(new javax.swing.ImageIcon(new helper.ImageManipulator("/resources/icons/plus.png").resize(35, 35).getImage()));
         btnTambahPost.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +116,14 @@ public class MyPost extends javax.swing.JPanel implements DataConsumer{
         navbarLayout.switchPage("buatPost");
     }//GEN-LAST:event_btnTambahPostActionPerformed
 
+    private void tfKeywordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfKeywordActionPerformed
+        filterPost();
+    }//GEN-LAST:event_tfKeywordActionPerformed
+
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
+        filterPost();
+    }//GEN-LAST:event_btnCariActionPerformed
+
     public void filterPost() {
         String keyword = tfKeyword.getText();
         String kategori = cbKategori.getSelectedItem().toString();
@@ -129,7 +148,7 @@ public class MyPost extends javax.swing.JPanel implements DataConsumer{
         panelContainer.updateUI();
     }
 
-    public void updateData(){
+    public void updateData() {
         filterPost();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
