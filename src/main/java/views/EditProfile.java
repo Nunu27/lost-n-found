@@ -25,7 +25,7 @@ public class EditProfile extends javax.swing.JPanel implements DataConsumer {
         this.navbarLayout = navbarLayout;
         initComponents();
 
-        fotoProfile.setSize(200, 200);
+//        fotoProfile.setSize(200, 200);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class EditProfile extends javax.swing.JPanel implements DataConsumer {
         tfNama.setText(user.getNama());
         tfWa.setText(user.getNoWa());
         tfPassword.setText(user.getPassword());
-        fotoProfile.setImage(user.getFotoProfil());
+//        fotoProfile.setImage(user.getFotoProfil());
         imgUpload.setPlaceholder(user.getFotoProfil());
     }
 
@@ -60,7 +60,7 @@ public class EditProfile extends javax.swing.JPanel implements DataConsumer {
         tfWa = new javax.swing.JTextField();
         imageContainer = new javax.swing.JPanel();
         imgUpload = new component.ImageUpload();
-        fotoProfile = new component.AvatarImage();
+        avatarImg = new component.ImageDisplay();
         lblTitle = new javax.swing.JLabel();
         tfPassword = new javax.swing.JPasswordField();
 
@@ -96,10 +96,12 @@ public class EditProfile extends javax.swing.JPanel implements DataConsumer {
 
         imageContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        imgUpload.setPlaceholder("/kelompok_empat/resources/profile_placeholder.jpg");
-        imgUpload.setAvatarImage(fotoProfile);
+        imgUpload.setPlaceholder("/resources/profile_placeholder.jpg");
         imageContainer.add(imgUpload, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, -1, -1));
-        imageContainer.add(fotoProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 200));
+
+        avatarImg.setSize(200,200);
+        imgUpload.setImageDisplay(avatarImg);
+        imageContainer.add(avatarImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 200));
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblTitle.setText("Edit Profile");
@@ -204,9 +206,9 @@ public class EditProfile extends javax.swing.JPanel implements DataConsumer {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private component.ImageDisplay avatarImg;
     private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnSimpan;
-    private component.AvatarImage fotoProfile;
     private javax.swing.JPanel imageContainer;
     private component.ImageUpload imgUpload;
     private javax.swing.JLabel lblEmail;

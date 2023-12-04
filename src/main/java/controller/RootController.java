@@ -76,4 +76,9 @@ public abstract class RootController extends JFrame {
     public void afterOpen() {
 
     }
+
+    public void deleteUser() {
+        postController.deleteUserPost(userController.getCurrentUser());
+        userController.removeUser();
+    }
 }

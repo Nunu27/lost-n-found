@@ -11,6 +11,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import controller.PostController;
 import controller.UserController;
+import javax.swing.JOptionPane;
 import views.Login;
 
 /**
@@ -30,7 +31,7 @@ public class App {
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            public void run() { 
                 Login frame = new Login();
                 UserController userController = new UserController();
                 PostController postController = new PostController();
@@ -38,10 +39,10 @@ public class App {
                 userController.addUser("/resources/profile_placeholder.jpg", "Wisnu", "wisnu.agung.001@gmail.com", "081217610185", "12345678");
                 userController.addUser("/resources/profile_placeholder.jpg", "Jhiven Agnar Fuad", "jhiven@gmail.com", "081217610185", "87654321");
 
-                postController.tambahPost(userController.getCurrentUser(), "Bolpen ilang!", "Pilot", "PENS HH101", "/resources/posts/bolpen.jpg", "", "Lost");
-                postController.tambahPost(userController.getCurrentUser(), "HP ilang", "iPhone", "Starbuck", "/resources/posts/iphone.png", "", "Lost");
-                postController.tambahPost(userController.getCurrentUser(), "Koceng oren", "Elmo", "Keputih", "/resources/posts/kucing.jpg", "", "Lost");
-                postController.tambahPost(userController.getCurrentUser(), "Kunci rumah", "Kunci", "PENS", "/resources/posts/kunci.jpg", "", "Found");
+                postController.addPost(userController.getCurrentUser(), "Bolpen ilang!", "Pilot", "PENS HH101", "/resources/posts/bolpen.jpg", "", "Lost");
+                postController.addPost(userController.getCurrentUser(), "HP ilang", "iPhone", "Starbuck", "/resources/posts/iphone.png", "", "Lost");
+                postController.addPost(userController.getCurrentUser(), "Koceng oren", "Elmo", "Keputih", "/resources/posts/kucing.jpg", "", "Lost");
+                postController.addPost(userController.getCurrentUser(), "Kunci rumah", "Kunci", "PENS", "/resources/posts/kunci.jpg", "", "Found");
 
                 userController.logout();
 

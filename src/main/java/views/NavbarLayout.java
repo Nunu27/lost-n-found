@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Component;
 import controller.RootController;
 import entity.Post;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,7 +43,7 @@ public class NavbarLayout extends RootController {
         MyPost myPost = new MyPost(this);
         DetailPost detailPost = new DetailPost(this);
         EditPost editPost = new EditPost(this);
-        
+
         pnlContent.add(beranda, "beranda");
         pnlContent.add(myPost, "myPost");
         pnlContent.add(profile, "profile");
@@ -98,6 +99,7 @@ public class NavbarLayout extends RootController {
         DetailPost detailPost = (DetailPost) getCurrentPage();
         detailPost.setPost(post);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -240,8 +242,12 @@ public class NavbarLayout extends RootController {
     }//GEN-LAST:event_btnBerandaActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        getUserController().logout();
-        openFrame("login");
+        int konfirmasi = JOptionPane.showConfirmDialog(this, "Apakah anda yakin untuk keluar?");
+        
+        if (konfirmasi == JOptionPane.YES_OPTION) {
+            getUserController().logout();
+            openFrame("login");
+        }
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed

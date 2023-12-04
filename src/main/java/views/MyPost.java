@@ -8,6 +8,7 @@ import component.WrapLayout;
 import entity.Post;
 import entity.User;
 import java.util.ArrayList;
+import javax.swing.BoxLayout;
 
 /**
  *
@@ -57,8 +58,6 @@ public class MyPost extends javax.swing.JPanel implements DataConsumer{
             .addGap(0, 311, Short.MAX_VALUE)
         );
 
-        panelContainer.setLayout(new WrapLayout());
-
         jScrollPane1.setViewportView(panelContainer);
 
         cbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua", "Lost", "Found" }));
@@ -86,7 +85,7 @@ public class MyPost extends javax.swing.JPanel implements DataConsumer{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTambahPost, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9))
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +97,7 @@ public class MyPost extends javax.swing.JPanel implements DataConsumer{
                     .addComponent(btnTambahPost, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(5, 5, 5)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -111,15 +110,17 @@ public class MyPost extends javax.swing.JPanel implements DataConsumer{
         String kategori = cbKategori.getSelectedItem().toString();
         User user = navbarLayout.getUserController().getCurrentUser();
 
-        setListContent(navbarLayout.getPostController().cariPost(keyword, kategori, user));
+        setListContent(navbarLayout.getPostController().searchPost(keyword, kategori, user));
     }
 
     public void setListContent(ArrayList<Post> posts) {
         panelContainer.removeAll();
 
         if (posts.isEmpty()) {
+            panelContainer.setLayout(new BoxLayout(panelContainer, BoxLayout.Y_AXIS));
             panelContainer.add(new NotFound());
         } else {
+            panelContainer.setLayout(new WrapLayout());
             for (Post post : posts) {
                 panelContainer.add(new MyPostItem(navbarLayout, post));
             }

@@ -26,7 +26,7 @@ public class ImageUpload extends javax.swing.JPanel {
     public String directory;
     public String fileName;
     public String extension = null;
-    AvatarImage avatarImage = null;
+    ImageDisplay imageDisplay = null;
 
     /**
      * Creates new form ImageUpload2
@@ -88,8 +88,8 @@ public class ImageUpload extends javax.swing.JPanel {
         this.placeholder = placeholder;
     }
 
-    public void setAvatarImage(AvatarImage avatarImage) {
-        this.avatarImage = avatarImage;
+    public void setImageDisplay(ImageDisplay avatarImage) {
+        this.imageDisplay = avatarImage;
         avatarImage.setImage(getImagePath());
     }
 
@@ -128,8 +128,8 @@ public class ImageUpload extends javax.swing.JPanel {
                     extension = fileExtension;
                 }
 
-                if (avatarImage != null) {
-                    avatarImage.setImage(getImagePath());
+                if (imageDisplay != null) {
+                    imageDisplay.setImage(getImagePath());
                 }
             } catch (IOException ex) {
                 Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);

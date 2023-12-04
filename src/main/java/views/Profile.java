@@ -5,6 +5,7 @@
 package views;
 
 import entity.User;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -48,7 +49,7 @@ public class Profile extends javax.swing.JPanel implements DataConsumer {
         lblNama = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
         lblNoWa = new javax.swing.JLabel();
-        fotoProfile = new component.AvatarImage();
+        fotoProfile = new component.ImageDisplay();
         btnHapus = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         btnEdit = new javax.swing.JButton();
@@ -134,15 +135,19 @@ public class Profile extends javax.swing.JPanel implements DataConsumer {
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        navbarLayout.getUserController().removeUser();
-        navbarLayout.openFrame("login");
+        int konfirmasi = JOptionPane.showConfirmDialog(this, "Apakah anda yakin untuk menghapus akun anda?");
+
+        if (konfirmasi == JOptionPane.YES_OPTION) {
+            navbarLayout.getUserController().removeUser();
+            navbarLayout.openFrame("login");
+        }
     }//GEN-LAST:event_btnHapusActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnHapus;
-    protected component.AvatarImage fotoProfile;
+    protected component.ImageDisplay fotoProfile;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblNama;
     private javax.swing.JLabel lblNoWa;

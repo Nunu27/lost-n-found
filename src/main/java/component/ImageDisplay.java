@@ -11,16 +11,17 @@ import javax.swing.ImageIcon;
  *
  * @author wisnu
  */
-public class AvatarImage extends javax.swing.JPanel {
+public class ImageDisplay extends javax.swing.JPanel {
 
     private String imagePath;
     private int width = 94;
     private int height = 94;
+    public boolean rounded = true;
 
     /**
      * Creates new form AvatarImage
      */
-    public AvatarImage() {
+    public ImageDisplay() {
         initComponents();
     }
 
@@ -32,7 +33,9 @@ public class AvatarImage extends javax.swing.JPanel {
     public ImageIcon getImage() {
         ImageManipulator manipulator = new ImageManipulator(imagePath);
         manipulator.resize(this.width, this.height);
-        manipulator.setRoundedCorner(this.height);
+        if (rounded) {
+            manipulator.setRoundedCorner(this.height);
+        }
 
         return new ImageIcon(manipulator.getImage());
     }

@@ -177,7 +177,7 @@
       <SubComponents>
         <Component class="component.ImageUpload" name="imgUpload">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="imgUpload.setPlaceholder(&quot;/kelompok_empat/resources/profile_placeholder.jpg&quot;);&#xa;imgUpload.setAvatarImage(fotoProfile);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="imgUpload.setPlaceholder(&quot;/resources/profile_placeholder.jpg&quot;);"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -185,7 +185,10 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="component.AvatarImage" name="fotoProfile">
+        <Component class="component.ImageDisplay" name="avatarImg">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="avatarImg.setSize(200,200);&#xa;imgUpload.setImageDisplay(avatarImg);"/>
+          </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="0" y="0" width="200" height="200"/>

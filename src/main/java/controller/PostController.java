@@ -20,7 +20,7 @@ public class PostController {
         this.listPost = new ArrayList<>();
     }
 
-    public ArrayList<Post> cariPost(String text, String kategori) {
+    public ArrayList<Post> searchPost(String text, String kategori) {
         text = text.toLowerCase();
         ArrayList<Post> hasilCari = new ArrayList<>();
 
@@ -28,15 +28,15 @@ public class PostController {
             boolean keyword = text.isBlank() ? true : post.getJudul().toLowerCase().contains(text) || post.getNamaBarang().toLowerCase().contains(text);
             boolean checkKategori = kategori.equals("Semua") || post.getKategori().equals(kategori);
 
-            if (keyword && checkKategori) {
+            if (keyword && checkKategori && !post.getTelahDitemukan()) {
                 hasilCari.add(post);
             }
         }
 
         return hasilCari;
     }
-    
-    public ArrayList<Post> cariPost(String text, String kategori, User user) {
+
+    public ArrayList<Post> searchPost(String text, String kategori, User user) {
         text = text.toLowerCase();
         ArrayList<Post> hasilCari = new ArrayList<>();
 
@@ -52,7 +52,7 @@ public class PostController {
         return hasilCari;
     }
 
-    public ArrayList<Post> cariPost(User user) {
+    public ArrayList<Post> searchPost(User user) {
 
         ArrayList<Post> hasilCari = new ArrayList<>();
 
@@ -65,11 +65,19 @@ public class PostController {
         return hasilCari;
     }
 
-    public void hapusPost(Post post) {
+    public void deleteUserPost(User user) {
+        for (Post post : listPost) {
+            if (post.getDipostingOleh() == user) {
+                listPost.remove(post);
+            }
+        }
+    }
+
+    public void deletePost(Post post) {
         this.listPost.remove(post);
     }
 
-    public void tambahPost(User user, String judul, String namaBarang, String alamat,
+    public void addPost(User user, String judul, String namaBarang, String alamat,
             String pathFoto, String deskripsi, String kategori) {
         Post post = new Post(user, namaBarang, alamat, judul, kategori);
 
@@ -81,6 +89,5 @@ public class PostController {
         }
 
         this.listPost.add(post);
-        System.out.println("path foto : " + post.getPathFoto() + ", deskripsi : " + post.getDeskripsi());
     }
 }

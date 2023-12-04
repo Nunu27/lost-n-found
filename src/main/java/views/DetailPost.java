@@ -5,7 +5,10 @@
 package views;
 
 import entity.Post;
+import helper.ImageManipulator;
 import java.time.format.DateTimeFormatter;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,7 +41,6 @@ public class DetailPost extends javax.swing.JPanel {
         lblFoto = new javax.swing.JLabel();
         lblNamaBarang = new javax.swing.JLabel();
         lblKategori = new javax.swing.JLabel();
-        lblDeskripsi = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
         btnSimpan = new javax.swing.JButton();
         btnKembali = new javax.swing.JButton();
@@ -46,13 +48,14 @@ public class DetailPost extends javax.swing.JPanel {
         lblAlamat = new javax.swing.JLabel();
         btnEdit = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lblDeskripsi = new javax.swing.JTextArea();
 
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         jPanel1.setBackground(new java.awt.Color(241, 241, 241));
 
         lblFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFoto.setText("FOTO BARANG");
         lblFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lblNamaBarang.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -60,9 +63,6 @@ public class DetailPost extends javax.swing.JPanel {
 
         lblKategori.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblKategori.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        lblDeskripsi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblDeskripsi.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblTitle.setText("Judul");
@@ -101,14 +101,23 @@ public class DetailPost extends javax.swing.JPanel {
             }
         });
 
+        btnHapus.setBackground(new java.awt.Color(255, 51, 0));
         btnHapus.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnHapus.setForeground(new java.awt.Color(51, 51, 51));
+        btnHapus.setForeground(new java.awt.Color(255, 255, 255));
         btnHapus.setText("Hapus");
         btnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHapusActionPerformed(evt);
             }
         });
+
+        lblDeskripsi.setEditable(false);
+        lblDeskripsi.setColumns(20);
+        lblDeskripsi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblDeskripsi.setLineWrap(true);
+        lblDeskripsi.setRows(5);
+        lblDeskripsi.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane2.setViewportView(lblDeskripsi);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -121,7 +130,7 @@ public class DetailPost extends javax.swing.JPanel {
                         .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -130,14 +139,17 @@ public class DetailPost extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                            .addComponent(lblFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                             .addComponent(lblKategori, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblAlamat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblDeskripsi, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
-                            .addComponent(lblNamaBarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(lblNamaBarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane2)))))
                 .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
@@ -146,21 +158,20 @@ public class DetailPost extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addComponent(lblTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(lblKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(lblTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblDeskripsi, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)))
-                .addGap(20, 20, 20)
+                        .addComponent(jScrollPane2)))
+                .addGap(6, 6, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -175,9 +186,9 @@ public class DetailPost extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,20 +210,25 @@ public class DetailPost extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        navbarLayout.getPostController().hapusPost(post);
-        navbarLayout.switchPage("myPost");
+        int konfirmasi = JOptionPane.showConfirmDialog(this, "Apakah anda yakin untuk menghapus postingan ini?");
+
+        if (konfirmasi == JOptionPane.YES_OPTION) {
+            navbarLayout.getPostController().deletePost(post);
+            navbarLayout.switchPage("myPost");
+        }
     }//GEN-LAST:event_btnHapusActionPerformed
 
     public void setPost(Post post) {
         this.post = post;
-        
+
+        lblFoto.setIcon(new ImageIcon(new ImageManipulator(post.getPathFoto()).resize(200, 200).getImage()));
         lblAlamat.setText(post.getAlamat());
         lblTanggal.setText(post.getTanggalPost().format(DateTimeFormatter.ISO_DATE));
         lblTitle.setText(post.getJudul());
         lblDeskripsi.setText(post.getDeskripsi());
         lblKategori.setText(post.getKategori());
         lblNamaBarang.setText(post.getNamaBarang());
-        
+
         if (post.getDipostingOleh() == navbarLayout.getUserController().getCurrentUser()) {
             btnEdit.setVisible(true);
             btnHapus.setVisible(true);
@@ -228,8 +244,9 @@ public class DetailPost extends javax.swing.JPanel {
     private javax.swing.JButton btnSimpan;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAlamat;
-    private javax.swing.JLabel lblDeskripsi;
+    private javax.swing.JTextArea lblDeskripsi;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JLabel lblKategori;
     private javax.swing.JLabel lblNamaBarang;

@@ -46,9 +46,9 @@ public class Register extends RootController {
         tfWa = new javax.swing.JTextField();
         lblWa = new javax.swing.JLabel();
         btnRegister = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        fotoContainer = new javax.swing.JPanel();
         imgUpload = new component.ImageUpload();
-        avatarImg = new component.AvatarImage();
+        avatarImg = new component.ImageDisplay();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Register");
@@ -106,12 +106,12 @@ public class Register extends RootController {
             }
         });
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        fotoContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imgUpload.setPlaceholder("/resources/profile_placeholder.jpg");
-        imgUpload.setAvatarImage(avatarImg);
-        jPanel1.add(imgUpload, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
-        jPanel1.add(avatarImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 100));
+        imgUpload.setImageDisplay(avatarImg);
+        fotoContainer.add(imgUpload, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 63, -1, -1));
+        fotoContainer.add(avatarImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,7 +123,7 @@ public class Register extends RootController {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(95, 95, 95)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fotoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +148,7 @@ public class Register extends RootController {
                 .addContainerGap()
                 .addComponent(lblTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fotoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNama)
                 .addGap(4, 4, 4)
@@ -169,7 +169,7 @@ public class Register extends RootController {
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(pnlFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -201,11 +201,11 @@ public class Register extends RootController {
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private component.AvatarImage avatarImg;
+    private component.ImageDisplay avatarImg;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegister;
+    private javax.swing.JPanel fotoContainer;
     private component.ImageUpload imgUpload;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblNama;
     private javax.swing.JLabel lblPassword;

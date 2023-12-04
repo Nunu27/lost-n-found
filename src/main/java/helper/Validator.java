@@ -62,4 +62,18 @@ public class Validator {
             return false;
         }
     }
+
+    public boolean validatePostData(String judul, String namaBarang, String alamat, String deskripsi) {
+        String message = "";
+        if (judul.isBlank() || namaBarang.isBlank() || alamat.isBlank() || deskripsi.isBlank()) {
+            message = "Harap isi semua data";
+        }
+
+        if (message.isBlank()) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, message, "Gagal", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+    }
 }

@@ -110,7 +110,7 @@ public class Beranda extends javax.swing.JPanel implements DataConsumer {
         String keyword = tfKeyword.getText();
         String kategori = cbKategori.getSelectedItem().toString();
 
-        setListContent(navbarLayout.getPostController().cariPost(keyword, kategori));
+        setListContent(navbarLayout.getPostController().searchPost(keyword, kategori));
     }
 
     public void setListContent(ArrayList<Post> posts) {

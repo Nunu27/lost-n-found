@@ -27,7 +27,7 @@
               <Component id="btnTambahPost" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
           </Group>
-          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jScrollPane1" alignment="0" pref="337" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -41,7 +41,7 @@
                   <Component id="btnCari" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="312" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="144" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -60,9 +60,6 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_LayoutCodePost" type="java.lang.String" value="panelContainer.setLayout(new WrapLayout());"/>
-          </AuxValues>
 
           <Layout>
             <DimensionLayout dim="0">

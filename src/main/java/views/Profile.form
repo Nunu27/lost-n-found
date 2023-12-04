@@ -92,7 +92,7 @@
         <Property name="text" type="java.lang.String" value="01231238123"/>
       </Properties>
     </Component>
-    <Component class="component.AvatarImage" name="fotoProfile">
+    <Component class="component.ImageDisplay" name="fotoProfile">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
       </AuxValues>
